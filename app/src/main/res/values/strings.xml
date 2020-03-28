@@ -1,6 +1,14 @@
 <resources>
-    <string name="app_name">CoronaWatch</string>
-
+    <string name="app_name">أخبار</string>
+    <string name="fb">Facebook</string>
+    <string name="yout">Youtube</string>
+    <string name="news">news</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name_avatar">يوبا دوايدي</string>
+    <string name="date_pub">8 نوفمبر</string>
+    <string name="contenu">hello how are you today</string>
+    <string name="nb_comments">256</string>
+    <string name="nb_jaime">" 36"</string>
+    <string name="string"/>
 </resources>
