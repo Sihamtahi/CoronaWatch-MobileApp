@@ -11,14 +11,13 @@
     <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"/>
-
-     <androidx.viewpager.widget.ViewPager
-                 android:id="@+id/viewPager"
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent"
-     />
-
-
+            android:layout_height="?android:attr/actionBarSize"
+            android:textColor="@color/colorGray"/>
+    <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/colorGray">
+    </androidx.viewpager.widget.ViewPager>
 
 </LinearLayout>
