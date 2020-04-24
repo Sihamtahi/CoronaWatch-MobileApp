@@ -25,59 +25,64 @@
             android:layout_width="match_parent"
             android:layout_height="80dp" android:layout_marginBottom="5dp" android:layout_alignParentBottom="true">
         <Button
-                android:text="المصابين"
-                android:textSize="15dp"
-                android:layout_width="90dp"
-                android:layout_height="60dp"
+                android:text="عدد الاصابات "
+                android:textSize="13dp"
+                android:layout_width="75dp"
+                android:layout_height="50dp"
                 android:id="@+id/malade_map_bottom"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="29dp"
-                android:layout_marginBottom="11dp"
+                android:layout_marginBottom="14dp"
                 android:background="@drawable/costum_button"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_alignParentBottom="true"
-
-                android:layout_toStartOf="@+id/suspet_map_bottom"/>
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="7dp"/>
         <Button
-                android:text="المشكوكين"
+                android:text="حالات غير مؤكدة"
                 android:textSize="15dp"
-                android:layout_width="90dp"
-                android:layout_height="60dp"
+                android:layout_width="75dp"
+                android:layout_height="50dp"
                 android:id="@+id/suspet_map_bottom"
                 android:background="@drawable/costum_button"
-                android:layout_toStartOf="@+id/porteur_map_bottom"
-                android:layout_marginEnd="33dp"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="12dp"/>
+                android:layout_marginBottom="14dp" android:layout_toEndOf="@+id/malade_map_bottom"
+                android:layout_marginStart="6dp"/>
 
-        <!--    <ToggleButton
-                    android:textOn="الحاملين"
-                    android:textOff="الحاملين"
-                    android:textSize="15dp"
-                    android:layout_width="90dp"
-                    android:layout_height="60dp"
-                    android:id="@+id/porteur_map_bottom"
-                    android:layout_alignParentEnd="true"
-                    android:background="@drawable/btn_buttom_sheet_map"
-                    android:layout_marginEnd="51dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="15dp"
-                    android:onClick="onCostumToggleClick"
-
-            />-->
-            <Button
-                    android:text="الحاملين"
-                    android:textSize="15dp"
-                    android:layout_width="90dp"
-                    android:layout_height="60dp"
-                    android:id="@+id/porteur_map_bottom"
-                    android:layout_alignParentEnd="true"
-                    android:clickable="true"
-                    android:background="@drawable/costum_button"
-                    android:layout_marginEnd="51dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="15dp"/>
+        <Button
+                android:text="حاملي المرض"
+                android:textSize="15dp"
+                android:layout_width="75dp"
+                android:layout_height="50dp"
+                android:id="@+id/porteur_map_bottom"
+                android:clickable="true"
+                android:background="@drawable/costum_button"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="14dp" android:layout_toEndOf="@+id/suspet_map_bottom"
+                android:layout_marginStart="6dp"/>
+        <Button
+                android:text="عدد الوفيات"
+                android:textSize="15dp"
+                android:layout_width="75dp"
+                android:layout_height="50dp"
+                android:id="@+id/mort_map_bottom"
+                android:clickable="true"
+                android:background="@drawable/costum_button"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="14dp"
+                android:layout_toEndOf="@+id/porteur_map_bottom" android:layout_marginStart="6dp"/>
+        <Button
+                android:text="حالات الشفاء"
+                android:textSize="15dp"
+                android:layout_width="75dp"
+                android:layout_height="50dp"
+                android:id="@+id/guer_map_bottom"
+                android:clickable="true"
+                android:background="@drawable/costum_button"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="14dp"
+                android:layout_toEndOf="@+id/mort_map_bottom" android:layout_marginStart="7dp"
+                android:layout_alignParentEnd="true" android:layout_marginEnd="5dp"/>
     </RelativeLayout>
     <RelativeLayout android:layout_width="match_parent" android:layout_height="20dp">
         <ImageView

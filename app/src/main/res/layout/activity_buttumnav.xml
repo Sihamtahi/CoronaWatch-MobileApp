@@ -152,31 +152,44 @@
                     android:paddingTop="7dp"
             >
                 <TextView
-                        android:layout_width="120dp"
+                        android:layout_width="75dp"
                         android:layout_height="25dp"
-                        android:text="المصابين"
+                        android:text="عدد الاصابات "
                         android:textColor="@color/gary_maq"
-                        android:textSize="20dp"
+                        android:textSize="12dp"
                         android:id="@+id/malade_map"
-
                         android:textAlignment="center"/>
                 <TextView
-                        android:layout_width="120dp"
+                        android:layout_width="75dp"
                         android:layout_height="25dp"
-                        android:text="المشكوكين"
+                        android:text="حالات غير مؤكدة"
                         android:textColor="@color/gary_maq"
-                        android:textSize="20dp"
+                        android:textSize="12dp"
                         android:id="@+id/suspect_map"
-
                         android:textAlignment="center"/>
                 <TextView
-                        android:layout_width="120dp"
+                        android:layout_width="75dp"
                         android:layout_height="25dp"
-                        android:text="الحاملين"
+                        android:text="حاملي المرض"
                         android:textColor="@color/gary_maq"
-                        android:textSize="20dp"
+                        android:textSize="12dp"
                         android:id="@+id/porteur_map"
-
+                        android:textAlignment="center"/>
+                <TextView
+                        android:layout_width="75dp"
+                        android:layout_height="25dp"
+                        android:text="عدد الوفيات"
+                        android:textColor="@color/gary_maq"
+                        android:textSize="12dp"
+                        android:id="@+id/mort_map"
+                        android:textAlignment="center"/>
+                <TextView
+                        android:layout_width="75dp"
+                        android:layout_height="25dp"
+                        android:text="حالات الشفاء"
+                        android:textColor="@color/gary_maq"
+                        android:textSize="12dp"
+                        android:id="@+id/Guer_map"
                         android:textAlignment="center"/>
             </LinearLayout>
             <LinearLayout
@@ -187,27 +200,45 @@
                     android:paddingBottom="7dp"
             >
                 <TextView
-                        android:layout_width="120dp"
+                        android:layout_width="75dp"
                         android:layout_height="37dp"
                         android:text="105"
+                        android:id="@+id/malade1_map"
                         android:textColor="@color/pink_maq"
-                        android:textSize="28dp"
+                        android:textSize="20dp"
                         android:paddingTop="0dp"
                         android:textAlignment="center"/>
                 <TextView
-                        android:layout_width="120dp"
+                        android:layout_width="75dp"
                         android:layout_height="37dp"
                         android:text="12"
+                        android:id="@+id/suspect1_map"
                         android:textColor="@color/yellow_maq"
-                        android:textSize="28dp"
-
+                        android:textSize="20dp"
                         android:textAlignment="center"/>
                 <TextView
-                        android:layout_width="120dp"
+                    android:layout_width="75dp"
+                    android:layout_height="37dp"
+                    android:text="58"
+                    android:id="@+id/porteur1_map"
+                    android:textColor="@color/bluec_maq"
+                    android:textSize="20dp"
+                    android:textAlignment="center"/>
+                <TextView
+                        android:layout_width="75dp"
                         android:layout_height="37dp"
                         android:text="58"
-                        android:textColor="@color/bluec_maq"
-                        android:textSize="28dp"
+                        android:id="@+id/mort1_map"
+                        android:textColor="@color/pink_maq"
+                        android:textSize="20dp"
+                        android:textAlignment="center"/>
+                <TextView
+                        android:layout_width="75dp"
+                        android:layout_height="37dp"
+                        android:text="5228"
+                        android:id="@+id/Guer1_map"
+                        android:textColor="@color/yellow_maq"
+                        android:textSize="20dp"
                         android:textAlignment="center"/>
             </LinearLayout>
         </LinearLayout>
