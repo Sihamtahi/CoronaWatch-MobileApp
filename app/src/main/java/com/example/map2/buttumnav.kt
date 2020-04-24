@@ -99,7 +99,7 @@ class buttumnav : AppCompatActivity() ,OnMapReadyCallback {
         var Mort : Int = 0
         /**Afficher les cercles des zones affectés sur la map **/
         var listTownsInfo = afficherCercles(googleMap)
-       // Thread.sleep(15000)
+       // Thread.sleep(30000)
         if (listTownsInfo.isEmpty())
         {
             Log.d("Sonthing ","La liste retournée est vide !!!!!!!!")
@@ -107,17 +107,17 @@ class buttumnav : AppCompatActivity() ,OnMapReadyCallback {
         else
         {
             Log.d("Sonthing ","La liste retournée n'est pas  vide ???")
-            Log.d("Sonthing ","La valeur de la première valeu est "+listTownsInfo[1].name)
+           // Log.d("Sonthing ","La valeur de la première valeu est "+listTownsInfo[1].name)
             var center:LatLng
             listTownsInfo.forEachIndexed {
                     idx,
                     town ->
-                    Log.d("Sonthing ","--> "+town.name+" "+town.number_carrier.toString()+" "+town.number_death.toString()+" "+town.number_recovered.toString() +" "+town.number_confirmed_cases + " "+town.number_suspect)
+                    //Log.d("Sonthing ","--> "+town.name+" "+town.number_carrier.toString()+" "+town.number_death.toString()+" "+town.number_recovered.toString() +" "+town.number_confirmed_cases + " "+town.number_suspect)
                     center = LatLng(town.location.latitude.toDouble(), town.location.longitude.toDouble())
                     googleMap.addCircle(
                         CircleOptions()
                             .center(center)
-                            .radius( 500.0 * town.number_confirmed_cases + 500.0*town.number_death - 1000.0 * town.number_recovered)
+                            .radius( 9000.0 )// town.number_confirmed_cases + 500.0*town.number_death )
                             .strokeWidth(3f)
                             .strokeColor(Color.YELLOW)
                             .clickable(true)
@@ -168,6 +168,7 @@ class buttumnav : AppCompatActivity() ,OnMapReadyCallback {
                     town ->
                  if (town.location.latitude - 1 <latlng.latitude && town.location.latitude + 1 > latlng.latitude && town.location.longitude - 1<latlng.longitude  && town.location.longitude + 1 > latlng.longitude)
                 {
+
                     Mal = Mal +town.number_confirmed_cases
                     Susp =Susp + town.number_suspect
                     Port =Port +  town.number_carrier
@@ -209,11 +210,7 @@ class buttumnav : AppCompatActivity() ,OnMapReadyCallback {
         var d = dial.show()
         d.window.setBackgroundDrawableResource(R.drawable.dialog_backgroun_region_info)
 
-        var asjustWilaya:String = " "
-        if ( wil.length> 9)
-        {
-            asjustWilaya = wil.substring(9)
-        }
+
 
             placeForInformation.findViewById<TextView>(R.id.dialog_num0).text=n1.toString()
             placeForInformation.findViewById<TextView>(R.id.dialog_num1).text=n2.toString()
@@ -221,7 +218,7 @@ class buttumnav : AppCompatActivity() ,OnMapReadyCallback {
             placeForInformation.findViewById<TextView>(R.id.dialog_num3).text=n4.toString()
             placeForInformation.findViewById<TextView>(R.id.dialog_num4).text=n5.toString()
             placeForInformation.findViewById<TextView>(R.id.dialog_num5).text = com
-            placeForInformation.findViewById<TextView>(R.id.dialog_num6).text =asjustWilaya
+            placeForInformation.findViewById<TextView>(R.id.dialog_num6).text =wil
 
         cancel_btn.setOnClickListener{
             d.dismiss()
@@ -277,10 +274,11 @@ class buttumnav : AppCompatActivity() ,OnMapReadyCallback {
                 towns.forEachIndexed { idx,
                                        town ->
 
-                    Log.i("Sonthing","> Item $idx:\n${town.name} ${town.location.latitude} ${town.location.longitude} ${town.number_sick} ${town.number_confirmed_cases}"
-                    )
+                   // Log.i("Sonthing","> Item $idx:\n${town.name} ${town.location.latitude} ${town.location.longitude} ${town.number_sick} ${town.number_confirmed_cases}"
+                    //)
                     if (town.number_death>0 ||town.number_suspect> 0 ||town.number_carrier>0 || town.number_recovered>0 || town.number_sick>0  )
-                    {
+                    {                      Log.d("Sonthing ","--> "+town.name+" "+town.number_carrier.toString()+" "+town.number_death.toString()+" "+town.number_recovered.toString() +" "+town.number_confirmed_cases + " "+town.number_suspect)
+
                         Log.i("Sonthing","> Item $idx celle la est trouvé"  )
                         listTowns.add(town)
                     }
@@ -288,14 +286,14 @@ class buttumnav : AppCompatActivity() ,OnMapReadyCallback {
             }
         }
         )
-        Thread.sleep(120000)
+        Thread.sleep(30000)
         return listTowns
     }
     /**********************************La fonction getCommune nretourne le nom de la Wilaya sur laquelle on a cliqué en utilisant le GeoCoder**/
     fun getWilaya(latlng: LatLng):String {
         val loc = Locale("ar")
         var state: String =  " "
-        val gcd = Geocoder(this, Locale.getDefault())
+        val gcd = Geocoder(this, loc)
         var addresses: MutableList<Address>? = gcd.getFromLocation(latlng.latitude, latlng.longitude, 1)
 
         //to get country code
@@ -313,7 +311,7 @@ fun getCommune(latlng: LatLng):String {
     val loc = Locale("ar")
 
     var town: String =" "
-    val gcd = Geocoder(this, Locale.getDefault())
+    val gcd = Geocoder(this, loc)
     //Thread.sleep(1000);
     var addresses: MutableList<android.location.Address>? = gcd.getFromLocation(latlng.latitude, latlng.longitude, 1)
     //To get country name
