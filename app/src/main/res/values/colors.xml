@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#65c69d</color>
+    <color name="colorPrimaryDark">#65c69d</color>
+    <color name="colorAccent">#666f78</color>
+    <color name="c1">#65c69d</color>
+    <color name="c2">#666f78</color>
+    <color name="c3">#353e47</color>
+    <color name="white">#fff</color>
+    <color name="gray">#797979</color>
+    <color name="logincolor">#ff9900</color>
+    <color name="blue_maq">#3497FD</color>
+    <color name="gary_maq">#959DAD</color>
+    <color name="bluef_maq">#2A2E43</color>
+    <color name="garyf_maq">#454F63</color>
+    <color name="bluec_maq">#3ACCE1</color>
+    <color name="yellow_maq">#FFB900</color>
+    <color name="orange_maq">#FF9057</color>
+    <color name="pink_maq">#C840E9</color>
+    <color name="red_maq">#F04163</color>
+   <!-- <color name="blue_deg_maq">#3DCCE1 ... #332F80</color>-->
+
+
+
+
+
+
+
+</resources>
