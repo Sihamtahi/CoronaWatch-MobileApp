@@ -1,174 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- part1 of the designed bottomsheet
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="150dp"
+              android:background="@drawable/shape_sheet_button"
               android:orientation="vertical"
-              android:background="@color/white"
-              android:layout_width="match_parent"
-              android:layout_height="225dp"
               app:layout_behavior="com.google.android.material.ButtomSheet">
-
-    <LinearLayout
+    <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/link"
-            android:orientation="horizontal"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="16dp"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/common_google_signin_btn_icon_dark_normal_background">
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_share_black_24dp"
-                android:tint="@color/gray"
-
-        />
+            android:layout_height="17dp"
+            android:background="@drawable/gradient_blue"
+    ></RelativeLayout>
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="30dp">
         <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:text="share"
-                android:textColor="@color/gray"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
+                android:layout_height="match_parent"
+                android:text="اختار خيارًا :"
+                android:textSize="22dp"
+                android:textColor="@color/bluef_maq"
+                android:layout_alignParentEnd="true" android:layout_marginEnd="15dp" android:textAlignment="textEnd"/>
+    </RelativeLayout>
 
-        />
-
-    </LinearLayout>
-    <LinearLayout
+    <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/copy"
-            android:orientation="horizontal"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="16dp"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/common_google_signin_btn_icon_dark_normal_background">
+            android:layout_height="80dp" android:layout_marginBottom="5dp" android:layout_alignParentBottom="true">
+        <Button
+                android:text="عددالإصابات"
+                android:textSize="15dp"
+                android:layout_width="90dp"
+                android:layout_height="60dp"
+                android:id="@+id/malade_map_bottom"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="29dp"
+                android:layout_marginBottom="11dp"
+                android:background="@drawable/costum_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_alignParentBottom="true"
+
+                android:layout_toStartOf="@+id/suspet_map_bottom"/>
+        <Button
+                android:text="عددالوفيات"
+                android:textSize="15dp"
+                android:layout_width="90dp"
+                android:layout_height="60dp"
+                android:id="@+id/suspet_map_bottom"
+                android:background="@drawable/costum_button"
+                android:layout_toStartOf="@+id/porteur_map_bottom"
+                android:layout_marginEnd="33dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="12dp"/>
+
+        <Button
+                android:text="حالات الشفاء"
+                android:textSize="15dp"
+                android:layout_width="90dp"
+                android:layout_height="60dp"
+                android:id="@+id/porteur_map_bottom"
+                android:layout_alignParentEnd="true"
+                android:clickable="true"
+                android:background="@drawable/costum_button"
+                android:layout_marginEnd="51dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="15dp"/>
+    </RelativeLayout>
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="20dp">
         <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_share_black_24dp"
-                android:tint="@color/gray"
-
+                android:layout_width="297dp"
+                android:layout_height="20dp"
+                android:src="@drawable/home_indicator"
+                android:layout_alignParentBottom="true" android:layout_marginBottom="0dp"
+                android:layout_alignParentEnd="true" android:layout_marginEnd="67dp"
         />
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:text="copy"
-                android:textColor="@color/gray"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-
-        />
-
-    </LinearLayout>
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/paste"
-            android:orientation="horizontal"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="16dp"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/common_google_signin_btn_icon_dark_normal_background">
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_share_black_24dp"
-                android:tint="@color/gray"
-
-        />
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:text="paste"
-                android:textColor="@color/gray"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-
-        />
-
-    </LinearLayout>
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/delete"
-            android:orientation="horizontal"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="16dp"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/common_google_signin_btn_icon_dark_normal_background">
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_share_black_24dp"
-                android:tint="@color/gray"
-
-        />
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:text="delete"
-                android:textColor="@color/gray"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-
-        />
-
-    </LinearLayout>
+    </RelativeLayout>
 
 
-
-</LinearLayout>
--->
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="horizontal"
-              android:background="@color/white"
-              android:layout_width="match_parent"
-              android:layout_height="225dp"
-              app:layout_behavior="com.google.android.material.ButtomSheet">
-
-    <Button
-            android:text="المصابين"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/button"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="105dp"
-            android:background="@drawable/costum_button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_alignParentBottom="true"/>
-    <Button
-            android:text="المشكوك"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/button2"
-            android:background="@drawable/costum_button"
-            android:layout_toStartOf="@+id/button3"
-            android:layout_marginEnd="52dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="107dp"/>
-    <Button
-            android:text="الحاملين"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/button3"
-            android:layout_alignParentEnd="true"
-            android:background="@drawable/costum_button"
-            android:layout_marginEnd="45dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="110dp"/>
 </LinearLayout>
