@@ -149,7 +149,7 @@ class ArticleRecyclerAdapter : RecyclerView.Adapter<ArticleRecyclerAdapter.ViewH
     }*/
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_facebook, parent, false)
+            .inflate(R.layout.fragment_article, parent, false)
         return ViewHolder(v)
     }
 
