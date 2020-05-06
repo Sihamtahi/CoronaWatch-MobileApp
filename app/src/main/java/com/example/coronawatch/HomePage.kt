@@ -28,7 +28,7 @@ import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import org.w3c.dom.Text
 
 
-class MainActivity : AppCompatActivity(){
+class HomePage : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

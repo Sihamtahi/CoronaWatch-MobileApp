@@ -8,14 +8,13 @@ import android.view.*
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-
 import android.content.DialogInterface
-
 import android.app.AlertDialog
 import androidx.cardview.widget.CardView
 
 
-class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+
+class ArticleRecyclerAdapter : RecyclerView.Adapter<ArticleRecyclerAdapter.ViewHolder>() {
 
     private val names = arrayOf("يوبا دوايدي", "يوبا دوايدي", "يوبا دوايدي")
 
@@ -105,8 +104,8 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
                 val dialogClickListener = DialogInterface.OnClickListener { dialog, which ->
                     when (which) {
                         DialogInterface.BUTTON_POSITIVE -> cardview.visibility = View.INVISIBLE
-                            // User clicked the Yes button
-                            //tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 35)
+                        // User clicked the Yes button
+                        //tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 35)
                         DialogInterface.BUTTON_NEGATIVE -> cardview.visibility = View.VISIBLE
                     }// User clicked the No button
                 }
@@ -125,7 +124,7 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
             var commentaire: EditText = itemView.findViewById(R.id.ComText)
             commentImage.setOnClickListener{
 
-                val intent = Intent(commentImage.context,Comment::class.java)
+                val intent = Intent(commentImage.context,ArticlePage::class.java)
                 intent.putExtra("nb_Comment",nb_comm.text)
                 intent.putExtra("nb_Like",nb_like.text)
                 intent.putExtra("contenu",contenu.text)
@@ -143,24 +142,31 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
         }
     }
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
+    /*override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.fragment_facebook, viewGroup, false)
+            .inflate(R.layout.article, viewGroup, false)
+        return ViewHolder(v)
+    }*/
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val v = LayoutInflater.from(parent.context)
+            .inflate(R.layout.fragment_facebook, parent, false)
         return ViewHolder(v)
     }
-    override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        viewHolder.nb_comm.text = nbComment[i]
-        viewHolder.nb_like.text = nbLike[i]
-        viewHolder.contenu.text = contenu_pub[i]
-        viewHolder.time.text = date_pub[i]
-        viewHolder.name.text = names[i]
-        viewHolder.shareImage.setBackgroundResource(images_share[i])
-        viewHolder.pubImage.setImageResource(images_pub[i])
-        viewHolder.likeImage.setBackgroundResource(images_likes[i])
-        viewHolder.commentImage.setBackgroundResource(images_comments[i])
-        viewHolder.hideImage.setBackgroundResource(images_supp[i])
-        viewHolder.avatarImage.setImageResource(images_avatar[i])
-        viewHolder.likeRedImage.setBackgroundResource(images_likes_red[i])
+
+
+    override fun onBindViewHolder(holder: ArticleRecyclerAdapter.ViewHolder, position: Int) {
+        holder.nb_comm.text = nbComment[position]
+        holder.nb_like.text = nbLike[position]
+        holder.contenu.text = contenu_pub[position]
+        holder.time.text = date_pub[position]
+        holder.name.text = names[position]
+        holder.shareImage.setBackgroundResource(images_share[position])
+        holder.pubImage.setImageResource(images_pub[position])
+        holder.likeImage.setBackgroundResource(images_likes[position])
+        holder.commentImage.setBackgroundResource(images_comments[position])
+        holder.hideImage.setBackgroundResource(images_supp[position])
+        holder.avatarImage.setImageResource(images_avatar[position])
+        holder.likeRedImage.setBackgroundResource(images_likes_red[position])
 
     }
 

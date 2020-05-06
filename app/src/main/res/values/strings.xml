@@ -1,14 +1,24 @@
 <resources>
-    <string name="app_name">أخبار</string>
+    <string name="facebook_app_id">503166670572438</string>
+    <string name="fb_login_protocol_scheme">fb503166670572438</string>
+    <string name="app_name">CoronaWatch</string>
     <string name="fb">فايسبوك</string>
     <string name="yout">يوتيوب</string>
     <string name="news">أخبار</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="name_avatar">يوبا دوايدي</string>
+    <string name="ajout_commentaire"> اضافة تعليق</string>
+    <string name="envoyer"> إرسال</string>
     <string name="date_pub">8 نوفمبر</string>
+    <string name="commentaire">التعليقات</string>
+    <string name="hide_publication">إخفاء المنشور</string>
+    <string name="oui">نعم</string>
+    <string name="non">لا</string>
+    <string name="hide_pub">هل تريد إخفاء هذا المنشور</string>
     <string name="contenu">" تسجيل 119 حالة جديدة مصابة بفيروس كورونا المستجد"</string>
     <string name="nb_comments">0</string>
     <string name="nb_jaime"></string>
+    <string name="sign_in_facebook">تسجيل الدخول باستخدام الفيسبوك</string>
+    <string name="sign_in_google">تسجيل الدخول باستخدام جوجل</string>
     <string name="string"/>
 </resources>

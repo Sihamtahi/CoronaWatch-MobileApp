@@ -12,7 +12,11 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
-            android:textColor="@color/colorGray"/>
+            android:background="@color/colorPrimary"
+            android:textSize="30sp"
+            app:tabTextAppearance="@style/TextAppearance.AppCompat.Large"
+            app:tabTextColor="@color/colorGray"
+            app:tabSelectedTextColor="@color/colorAccent"/>
     <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"

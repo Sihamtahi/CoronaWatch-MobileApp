@@ -37,4 +37,10 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0-beta01'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3'
+    implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.google.android.gms:play-services-auth:18.0.0'
+    implementation 'com.shobhitpuri.custombuttons:google-signin:1.1.0'
+
 }

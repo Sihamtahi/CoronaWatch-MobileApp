@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+            xmlns:android="https://schemas.android.com/apk/res/android"
+            xmlns:android2="http://schemas.android.com/apk/res/android"
+            xmlns:app="https://schemas.android.com/apk/res-auto"
+            xmlns:app2="http://schemas.android.com/apk/res-auto" xmlns:tools="https://schemas.android.com/tools"
+            android2:orientation="vertical"
+            tools:context=".loginpage"
+            android2:layout_width="match_parent"
+            android2:layout_height="match_parent">
+
+    <ImageView
+            android2:layout_width="166dp"
+            android2:layout_height="191dp"
+            android2:layout_gravity="center"
+            android2:layout_marginTop="10dp"
+            app2:srcCompat="@drawable/logo"
+            android2:id="@+id/logo"/>
+    <com.google.android.gms.common.SignInButton
+            android2:layout_width="200dp"
+            android2:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android2:layout_marginTop="80dp"
+            android2:forceDarkAllowed="true"
+            android:id="@+id/login_google"
+            android2:layout_marginLeft="80dp"
+            android2:id="@+id/login_google"/>
+
+    <com.facebook.login.widget.LoginButton
+
+            android2:layout_marginTop="20dp"
+            android2:layout_marginLeft="80dp"
+            android2:gravity="center"
+            android2:text="Login"
+            android2:id="@+id/facebook_login"
+            android2:layout_width="200dp"
+            android2:layout_height="wrap_content"/>
+
+
+
+    </LinearLayout>
+
+
