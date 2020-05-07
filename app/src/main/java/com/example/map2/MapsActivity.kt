@@ -58,47 +58,27 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     var confirme: TextView? = null
     var retablis: TextView? = null
     var btnSwitch :Button ? = null
-    var malade_cont: TextView? = null
-    var confirme_cont: TextView? = null
-    var retablis_cont: TextView? = null
-
 
     //OkHttpClient creates connection pool between client and server
     val client = OkHttpClient()
-    //  var malade: TextView? = null
-
-
 
     private lateinit var mMap: GoogleMap
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        // run("https://coronavirus-tracker-api.herokuapp.com/v2/locations?country_code=IT")
-        // partie test fichier json
+
         malade = findViewById(R.id.malade)
         confirme = findViewById(R.id.confirmé)
         retablis = findViewById(R.id.suspect)
         btnSwitch= findViewById (R.id.zoomin) //findViewById(R.id.switch_to_algeria_map)
-
-        // val url = "https://coronavirus-tracker-api.herokuapp.com/v2/locations?country_code=IT"
-
-        val client = OkHttpClient()
-
-        doAsync {
-            //  Request("https://coronavirus-tracker-api.herokuapp.com/all").run()
-            // var arrayList_details:ArrayList<Coordinates> = ArrayList()
-
-        }
-////////////////////////
-
-        //  Thread.sleep(15000)
 
 
         /** la partie ajoutée concernant la map**/
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
         /** la partie pour le buttom sheet dialog
          * Configuration des deux buttons pour que le dialog apparait**/
         val bottomSheetDialog = BottomSheetDialog(this)
@@ -108,6 +88,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         swip_up.setOnClickListener { bottomSheetDialog.show() }
 
     }
+
+    /**  API call pour avoir le nombre total de nmbr de cas confirmés , et morts dans le monde entier  **/
     fun run( url:String) {
         val request = okhttp3.Request.Builder()
             .url(url)
@@ -141,8 +123,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun setMapStyle(map: GoogleMap)
     {
         try {
-            // Customize the styling of the base map using a JSON object defined
-            // in a raw resource file.
+
+
             val success = map.setMapStyle(
                 MapStyleOptions.loadRawResourceStyle(
                     this,
@@ -186,10 +168,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             zoomIn(mMap)
         } */
         /**gestion des buttons du Bottom sheet **/
-/*
-         var malade_map:ToggleButton= findViewById(R.id.malade_map_bottom)
-         var suspect_map:Button= findViewById(R.id.suspet_map_bottom)
-         var porteur_map :Button=findViewById(R.id.porteur_map_bottom) */
+
         /**On Ajoute le OnClick Listner pour pouvoir afficher **/
 
 
@@ -203,7 +182,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         }
 
-        // val confirmed_filter:TextView = findViewById(R.id.malade_map_bottom)
+
 
         fun OnDefaultToggleClick (view:View)
         {
@@ -215,22 +194,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             Toast.makeText(this,"CostumToggle",Toast.LENGTH_SHORT).show()
         }
         // RunUrl()
+
+        /**  API call pour avoir le nombre total de nmbr de cas confirmés , et morts dans le monde entier  **/
         run("https://coronavirus-tracker-api.herokuapp.com/v2/latest")
         doAsync {
             var arrayList_details = RunUrl("https://coronavirus-tracker-api.herokuapp.com/v2/locations",googleMap)
         }
-        /*var cityCircle = googleMap.addCircle(
-            CircleOptions()
-                .center(country)
-                .radius(90000.0)
-                .strokeWidth(3f)
-                .strokeColor(Color.YELLOW)
-                .fillColor(Color.argb(70,0,150,150)))
-        google.maps.event.addListener(cityCircle, "click", function(ev) {
-            infoWindow.setPosition(ev.latLng);
-            infoWindow.open(map);
-        });*/
-
 
         mMap.uiSettings.isZoomControlsEnabled =true
         mMap.isBuildingsEnabled=true
@@ -247,6 +216,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
         ////////////////////////
+        /**  API CALL pour dessiner cercle et avoir données de chaque pays **/
         var nbrMal  : Int = 0
         var nbrSusp : Int = 0
         var nbrPort : Int = 0
@@ -279,19 +249,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         })
         Thread.sleep(1000)
 
-        /* doAsync {
-             uiThread {
-                // Thread.sleep(15000);
-                 println("ouiiiiiiiiii")
-             }
-          } */
-
         ///////////////////////////
 
         dial.setView(placeForInformation)
         var d = dial.show()
         d.window.setBackgroundDrawableResource(R.drawable.dialog_backgroun_region_info)
-        //malade_cont = placeForInformation.findViewById<TextView>(R.id.dialog_num0)
+
 
         placeForInformation.findViewById<TextView>(R.id.dialog_num0).text=nbrMal.toString()
         placeForInformation.findViewById<TextView>(R.id.dialog_num1).text=nbrSusp.toString()
@@ -318,12 +281,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val gcd = Geocoder(this, Locale.getDefault())
         //Thread.sleep(1000);
         var addresses: MutableList<Address>? = gcd.getFromLocation(latlng.latitude, latlng.longitude, 1)
-        //To get country name
-        /*  if (addresses!!.get(0).countryName != null) {
-              val country = addresses.get(0).countryName
-              Log.d("COUNTRY", country)
-          }*/
-
         //to get country code
         if (addresses!!.get(0).countryCode != null) {
             country_code = addresses.get(0).countryCode
@@ -334,6 +291,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         return country_code!!
 
     }
+    /**  fonction pour avoir le nom du pays selon latitude et longitude **/
     fun getCountryName(latlng: LatLng): String {
 
         var country_cname: String? = null
@@ -349,6 +307,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
         return country_cname!!
     }
+
+    /** API CALL pour dessiner cercles dans le monde et avoir données de chaque pays  **/
 
     fun RunUrl(url:String , googleMap: GoogleMap): ArrayList<Coordinates> {
         var list_coord:ArrayList<Coordinates> = ArrayList()

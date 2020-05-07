@@ -296,7 +296,7 @@ class buttumnav : AppCompatActivity() ,OnMapReadyCallback {
             }
         }
         )
-        Thread.sleep(20000)
+        Thread.sleep(30000)
         return listTowns
     }
     /**********************************La fonction getCommune nretourne le nom de la Wilaya sur laquelle on a cliqué en utilisant le GeoCoder**/
