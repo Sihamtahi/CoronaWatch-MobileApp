@@ -1,3 +1,4 @@
+
 import android.content.res.Resources.NotFoundException
 import android.graphics.Color
 import android.location.Address
@@ -74,9 +75,11 @@ class MainActivity : AppCompatActivity() ,OnMapReadyCallback {
         confirme = findViewById(R.id.confirmé)
         retablis = findViewById(R.id.suspect)
         // val url = "https://coronavirus-tracker-api.herokuapp.com/v2/locations?country_code=IT"
-
+        println("yes2")
         val client = OkHttpClient()
-
+        var a = DrawCircles()
+        println("yes1")
+        a.runCircles()
         doAsync {
             //  Request("https://coronavirus-tracker-api.herokuapp.com/all").run()
             // var arrayList_details:ArrayList<Coordinates> = ArrayList()
@@ -101,7 +104,7 @@ class MainActivity : AppCompatActivity() ,OnMapReadyCallback {
 
     }
 
-    fun run( url:String) {
+    /*fun run( url:String) {
         val request = okhttp3.Request.Builder()
             .url(url)
             .build()
@@ -127,7 +130,7 @@ class MainActivity : AppCompatActivity() ,OnMapReadyCallback {
             }
             //    }
         })
-    }
+    }*/
 
 
 
@@ -191,9 +194,9 @@ class MainActivity : AppCompatActivity() ,OnMapReadyCallback {
             Toast.makeText(this,"CostumToggle",Toast.LENGTH_SHORT).show()
         }
         // RunUrl()
-        run("https://coronavirus-tracker-api.herokuapp.com/v2/latest")
+       // run("https://coronavirus-tracker-api.herokuapp.com/v2/latest")
         doAsync {
-            var arrayList_details = RunUrl("https://coronavirus-tracker-api.herokuapp.com/v2/locations",googleMap)
+         //   var arrayList_details = RunUrl("https://coronavirus-tracker-api.herokuapp.com/v2/locations",googleMap)
         }
         /*var cityCircle = googleMap.addCircle(
             CircleOptions()
@@ -225,7 +228,7 @@ class MainActivity : AppCompatActivity() ,OnMapReadyCallback {
         var nbrMal  : Int = 0
         var nbrSusp : Int = 0
         var nbrPort : Int = 0
-        val url = "https://coronavirus-tracker-api.herokuapp.com/v2/locations?country_code="+count_code
+/*        val url = "https://coronavirus-tracker-api.herokuapp.com/v2/locations?country_code="+count_code
         val request = okhttp3.Request.Builder()
             .url(url)
             .build()
@@ -252,7 +255,7 @@ class MainActivity : AppCompatActivity() ,OnMapReadyCallback {
                 println("deathhhhhhhhh:"+res.getInt("deaths"))
             }
         })
-        Thread.sleep(1000)
+        Thread.sleep(1000)*/
 
         /* doAsync {
              uiThread {
@@ -326,7 +329,7 @@ class MainActivity : AppCompatActivity() ,OnMapReadyCallback {
         return country_cname!!
     }
 
-    fun RunUrl(url:String , googleMap: GoogleMap): ArrayList<Coordinates> {
+    /*fun RunUrl(url:String , googleMap: GoogleMap): ArrayList<Coordinates> {
         var list_coord:ArrayList<Coordinates> = ArrayList()
         // add circles
         var coord = Coordinates ()
@@ -379,6 +382,6 @@ class MainActivity : AppCompatActivity() ,OnMapReadyCallback {
         })
 
         return list_coord
-    }
+    }*/
 }
 

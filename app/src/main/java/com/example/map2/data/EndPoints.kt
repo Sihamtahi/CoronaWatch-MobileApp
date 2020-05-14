@@ -1,5 +1,8 @@
 package com.example.map2.data
 
+import retrofit2.Call
+import retrofit2.http.GET
+
 interface TmdbEndpoints {
 
     /*@GET("/todos")
@@ -7,6 +10,6 @@ interface TmdbEndpoints {
     //@GET("todos")
     //  fun getList(@Path("id") id: String): Call<MyList>
 
-    @GET("todos")
-    fun getCorrdinates(): Call<List<Coordinates>>
+    @GET("v2/locations")
+    fun getCorrdinates(): Call<MyList>
 }

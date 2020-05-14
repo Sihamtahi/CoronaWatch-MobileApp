@@ -61,6 +61,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     //OkHttpClient creates connection pool between client and server
     val client = OkHttpClient()
+    var myListCoord: List<Locations_> ?= null
 
     private lateinit var mMap: GoogleMap
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,6 +73,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         confirme = findViewById(R.id.confirmé)
         retablis = findViewById(R.id.suspect)
         btnSwitch= findViewById (R.id.zoomin) //findViewById(R.id.switch_to_algeria_map)
+
+
+        println("yes2")
+        val client = OkHttpClient()
+
+
+
 
 
         /** la partie ajoutée concernant la map**/
@@ -198,8 +206,39 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         /**  API call pour avoir le nombre total de nmbr de cas confirmés , et morts dans le monde entier  **/
         run("https://coronavirus-tracker-api.herokuapp.com/v2/latest")
         doAsync {
-            var arrayList_details = RunUrl("https://coronavirus-tracker-api.herokuapp.com/v2/locations",googleMap)
+           // var arrayList_details = RunUrl("https://coronavirus-tracker-api.herokuapp.com/v2/locations",googleMap)
         }
+
+        doAsync {
+            var a = DrawCircles()
+            println("yes1")
+            myListCoord= a.runCircles()
+            if(myListCoord == null){
+                println("liste vide")
+            }else {
+                runOnUiThread {
+                 var country:LatLng
+                println("liste non vide")
+                myListCoord!!.forEachIndexed {
+                        idx,
+                        coord -> println("idx est:"+idx)
+                   // println("coord est "+coord.coordinates.latitude)
+                    //println("long est "+coord.coordinates.longitude)
+                country= LatLng( coord.coordinates.latitude.toDouble(),coord.coordinates.longitude.toDouble())
+                    println("coord est "+country)
+
+                        googleMap.addCircle(
+                            CircleOptions()
+                                .center(country)
+                                .radius(90000.0)
+                                .strokeWidth(3f)
+                                .strokeColor(Color.YELLOW)
+                                .fillColor(Color.argb(70,0,150,150)))
+                    }
+
+                }
+                }
+           }
 
         mMap.uiSettings.isZoomControlsEnabled =true
         mMap.isBuildingsEnabled=true
@@ -310,7 +349,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     /** API CALL pour dessiner cercles dans le monde et avoir données de chaque pays  **/
 
-    fun RunUrl(url:String , googleMap: GoogleMap): ArrayList<Coordinates> {
+    /*fun RunUrl(url:String , googleMap: GoogleMap): ArrayList<Coordinates> {
         var list_coord:ArrayList<Coordinates> = ArrayList()
         // add circles
         var coord = Coordinates ()
@@ -363,6 +402,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         })
 
         return list_coord
-    }
+    }*/
 
 }
