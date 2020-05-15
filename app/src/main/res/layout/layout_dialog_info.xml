@@ -109,7 +109,7 @@
             android:layout_below="@+id/dialog_info2" android:textSize="23dp"/>
     <TextView
             android:text="25"
-            android:textColor="@color/pink_maq"
+            android:textColor="@color/red_maq"
             android:layout_width="wrap_content"
             android:layout_height="50dp" android:id="@+id/dialog_num3" android:textAlignment="textEnd"
             android:layout_marginTop="12dp"
@@ -125,7 +125,7 @@
             android:layout_below="@+id/dialog_info3" android:textSize="23dp"/>
     <TextView
             android:text="23"
-            android:textColor="@color/yellow_maq"
+            android:textColor="@color/green_maq"
             android:layout_width="wrap_content"
             android:layout_height="50dp" android:id="@+id/dialog_num4" android:textAlignment="textEnd"
             android:layout_marginTop="12dp"

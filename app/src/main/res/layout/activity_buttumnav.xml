@@ -81,7 +81,7 @@
                     android:layout_alignParentEnd="true" android:layout_marginEnd="82dp"
 
             />
-           <!-- <TextView
+            <!-- <TextView
                     android:layout_width="212dp"
                     android:layout_height="wrap_content"
                     android:text="المشكوكين و الحاملين و المصابين"
@@ -136,6 +136,24 @@
                     android:layout_alignParentStart="true" android:layout_marginStart="9dp"
                     android:layout_marginTop="13dp" android:layout_alignParentTop="true"/>
         </RelativeLayout>
+        <!--Le button pour restaurer l'affichage général dans la map -->
+        <RelativeLayout
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:background="@drawable/shape_button_up"
+                android:layout_alignParentEnd="true" android:layout_marginEnd="6dp"
+                android:layout_alignParentBottom="true" android:layout_marginBottom="245dp">
+            <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:id="@+id/affGen"
+                    android:textColor="@color/bluef_maq"
+                     android:background="@drawable/affichgeneral"
+                    android:layout_alignParentBottom="true" android:layout_marginBottom="7dp"
+                    android:layout_alignParentEnd="true" android:layout_marginEnd="7dp"
+                    android:layout_alignParentStart="true" android:layout_marginStart="7dp"
+                    android:layout_marginTop="5dp" android:layout_alignParentTop="true" android:textStyle="bold"/>
+        </RelativeLayout>
         <LinearLayout
                 android:layout_width="380dp"
                 android:layout_height="90dp"
@@ -164,7 +182,7 @@
                         android:layout_height="25dp"
                         android:text="حالات غير مؤكدة"
                         android:textColor="@color/gary_maq"
-                        android:textSize="12dp"
+                        android:textSize="11dp"
                         android:id="@+id/suspect_map"
                         android:textAlignment="center"/>
                 <TextView
@@ -202,7 +220,7 @@
                 <TextView
                         android:layout_width="75dp"
                         android:layout_height="37dp"
-                        android:text="105"
+                        android:text="000"
                         android:id="@+id/malade1_map"
                         android:textColor="@color/pink_maq"
                         android:textSize="20dp"
@@ -211,37 +229,47 @@
                 <TextView
                         android:layout_width="75dp"
                         android:layout_height="37dp"
-                        android:text="12"
+                        android:text="000"
                         android:id="@+id/suspect1_map"
                         android:textColor="@color/yellow_maq"
                         android:textSize="20dp"
                         android:textAlignment="center"/>
                 <TextView
-                    android:layout_width="75dp"
-                    android:layout_height="37dp"
-                    android:text="58"
-                    android:id="@+id/porteur1_map"
-                    android:textColor="@color/bluec_maq"
-                    android:textSize="20dp"
-                    android:textAlignment="center"/>
+                        android:layout_width="75dp"
+                        android:layout_height="37dp"
+                        android:text="000"
+                        android:id="@+id/porteur1_map"
+                        android:textColor="@color/bluec_maq"
+                        android:textSize="20dp"
+                        android:textAlignment="center"/>
                 <TextView
                         android:layout_width="75dp"
                         android:layout_height="37dp"
-                        android:text="58"
+                        android:text="000"
                         android:id="@+id/mort1_map"
-                        android:textColor="@color/pink_maq"
+                        android:textColor="@color/red_maq"
                         android:textSize="20dp"
                         android:textAlignment="center"/>
                 <TextView
                         android:layout_width="75dp"
                         android:layout_height="37dp"
-                        android:text="5228"
+                        android:text="000"
                         android:id="@+id/Guer1_map"
-                        android:textColor="@color/yellow_maq"
                         android:textSize="20dp"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center" android:textColor="@color/green_maq"/>
             </LinearLayout>
         </LinearLayout>
+        <ProgressBar
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar" android:layout_alignParentStart="true" android:layout_marginStart="167dp"
+                android:layout_alignParentEnd="true" android:layout_marginEnd="196dp" android:layout_marginTop="346dp"
+                android:layout_alignParentTop="true"
+                android:outlineAmbientShadowColor="@color/yellow_maq"
+                android:foregroundTint="@color/yellow_maq"
+                android:indeterminateTint="@color/yellow_maq"
+        />
 
     </RelativeLayout>
 

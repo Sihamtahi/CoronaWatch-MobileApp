@@ -174,14 +174,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         setMapStyle(mMap)
         /**********lisner pour swicher entre les maps**/
          val btnSwitch = findViewById<Button>(R.id.switch_to_algeria_map) //findViewById(R.id.switch_to_algeria_map)
-      if(btnSwitch != null)
+    /*  if(btnSwitch != null)
       {
           btnSwitch.setOnClickListener
           {
               val intent = Intent(btnSwitch.context, SwitchWToAlg::class.java)
               btnSwitch.context.startActivity(intent)
           }
-      }
+      }*/
 
         /**Confuguer le zoom pour la map **/
         zoomin.setOnClickListener {
@@ -277,11 +277,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 println("deathhhhhhhhh:"+res.getInt("deaths"))
             }
         })
-        Thread.sleep(1000)
+        Thread.sleep(1500)
 
         /* doAsync {
              uiThread {
-                // Thread.sleep(15000);
+                // Thread.sleep(20000);
                  println("ouiiiiiiiiii")
              }
           } */

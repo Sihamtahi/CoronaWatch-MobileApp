@@ -17,7 +17,8 @@
     <color name="yellow_maq">#FFB900</color>
     <color name="orange_maq">#FF9057</color>
     <color name="pink_maq">#C840E9</color>
-    <color name="red_maq">#F04163</color>
+    <color name="red_maq">#f00</color> //255,0,0
+    <color name="green_maq">#0abf0a</color>//10,191,10
    <!-- <color name="blue_deg_maq">#3DCCE1 ... #332F80</color>-->
 
 
