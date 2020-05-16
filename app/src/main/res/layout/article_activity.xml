@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:cardv="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Gray_back"
+    android:measureAllChildren="true"
+    tools:context="com.example.coronawatch.Article">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/pub_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:src="@mipmap/img"
+            android:layout_gravity="center"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="401dp"
+            android:layout_height="32dp"
+
+            tools:layout_editor_absoluteX="someValue"
+            tools:layout_editor_absoluteY="someValue">
+
+            <Button
+                android:id="@+id/comment"
+                android:layout_width="22dp"
+                android:layout_height="18dp"
+                android:layout_gravity="left"
+                android:layout_marginStart="280dp"
+                android:background="@mipmap/com"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+
+                />
+
+            <Button
+                android:id="@+id/share"
+                android:layout_width="22dp"
+                android:layout_height="18dp"
+                android:layout_gravity="left"
+                android:layout_marginStart="36dp"
+                android:background="@mipmap/share"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/like"
+                android:layout_width="22dp"
+                android:layout_height="18dp"
+                android:layout_gravity="left"
+                android:layout_marginStart="330dp"
+                android:background="@mipmap/path"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent" />
+            <Button
+                android:id="@+id/Red"
+                android:layout_width="22dp"
+                android:layout_height="18dp"
+                android:layout_gravity="left"
+                android:layout_marginStart="330dp"
+                android:background="@mipmap/lik"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                android:visibility="gone" />
+
+
+            <TextView
+                android:id="@+id/nb_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginStart="310dp"
+                android:fontFamily="@font/roboto_light"
+                android:text="4"
+                android:textSize="16sp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/nb_comm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginStart="244dp"
+                android:fontFamily="@font/roboto_light"
+                android:text="400"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <EditText
+            android:id="@+id/ComText"
+            android:layout_width="30dp"
+            android:layout_height="23dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="90dp"
+            android:layout_marginTop="290dp"
+            android:ems="40"
+            android:text="اضافة تعليق"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/likeRed"
+            android:layout_width="30dp"
+            android:layout_height="23dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="290dp"
+            android:layout_marginTop="290dp"
+            android:visibility="gone"
+            android:background="@mipmap/lik"/>
+
+        <TextView
+            android:id="@+id/text_pub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:text="Des cas Confirmés du COVID-19 à Boghni"
+            android:textSize="18sp"
+            android:textColor="#2092ED"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="0"
+            android:gravity="right"
+            android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet
+"           android:id="@id/text"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+        <TextView
+            android:id="@+id/text_com"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:text="التعليقات:"
+            android:textSize="18sp"
+            android:textColor="#2092ED"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ListView
+            android:id="@+id/listCom"
+            android:layout_width="match_parent"
+            android:layout_height="384dp"
+            android:layout_below="@+id/button1"
+            android:layout_marginLeft="10dp"
+            android:gravity="right"
+            android:cacheColorHint="@color/colorAccent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/send"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="8dp"
+                android:paddingRight="5dp"
+                android:background="@mipmap/bg"
+                android:fontFamily="@font/roboto_light"
+                android:onClick="sendMessage"
+                android:text="@string/envoyer"
+                android:textColor="@color/colorPrimary"
+                android:textSize="22sp"
+                tools:ignore="OnClick" />
+
+            <EditText
+                android:id="@+id/com"
+                android:layout_width="260dp"
+                android:layout_height="44dp"
+                android:paddingLeft="10dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/et_cust"
+                android:gravity="right"
+                android:hint="@string/ajout_commentaire"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+    </ScrollView>
+</FrameLayout>

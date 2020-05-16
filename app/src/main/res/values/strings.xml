@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name"> اخر الأخبار </string>
+    <string
+        name="facebook_app_id" translatable="false">503166670572438</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb503166670572438</string>
+    <string name="fb">فايسبوك</string>
+    <string name="yout">يوتيوب</string>
+    <string name="news">أخبار</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="name_avatar"> دوايدي</string>
+    <string name="ajout_commentaire" translatable="false"> اضافة تعليق</string>
+    <string name="envoyer" translatable="false"> إرسال</string>
+    <string name="date_pub">8 نوفمبر</string>
+    <string name="commentaire" translatable="false">التعليقات</string>
+    <string name="hide_publication" translatable="false">إخفاء المنشور</string>
+    <string name="oui" translatable="false">نعم</string>
+    <string name="non" translatable="false">لا</string>
+    <string name="hide_pub" translatable="false">هل تريد إخفاء هذا المنشور</string>
+    <string name="auto_cmp" translatable="false">الرجاء تسجيل الدخول </string>
+    <string name="err" translatable="false">لا يمكن اضافة تعليق</string>
+    <string name="contenu">" تسجيل 119 حالة جديدة مصابة بفيروس كورونا المستجد"</string>
+    <string name="nb_comments">0</string>
+    <string name="nb_jaime"></string>
+    <string name="sign_in_facebook" translatable="false">تسجيل الدخول باستخدام الفيسبوك</string>
+    <string name="sign_in_google" translatable="false">تسجيل الدخول باستخدام جوجل</string>
+    <string name="string"/>
+</resources>

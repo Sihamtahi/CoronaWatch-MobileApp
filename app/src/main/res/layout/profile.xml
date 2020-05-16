@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:gravity="center|top"
+              android:layout_height="match_parent"
+              tools:context=".profile">
+
+
+    <ImageView
+            android:layout_marginTop="30dp"
+            android:id="@+id/imageViewProfile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@mipmap/bg"
+            />
+
+    <TextView
+            android:id="@+id/nameTV"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+    />
+
+    <TextView
+            android:layout_marginTop="16dp"
+            android:id="@+id/emailTV"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="lydia"/>
+
+    <TextView
+            android:layout_marginTop="16dp"
+            android:id="@+id/genderTV"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+    />
+
+    <TextView
+            android:layout_marginTop="16dp"
+            android:id="@+id/urlTV"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+    />
+
+</LinearLayout>
