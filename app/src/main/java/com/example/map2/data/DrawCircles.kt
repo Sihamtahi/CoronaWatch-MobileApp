@@ -1,54 +1,63 @@
 package com.example.map2.data
 
 
-import android.graphics.Color
+import android.view.LayoutInflater
+import android.widget.Button
 import android.widget.ProgressBar
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.maps.model.CircleOptions
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.map2.MapsActivity
+import com.example.map2.R
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class DrawCircles {
 
-    private var recyclerView: RecyclerView? = null
+
     private var progress_bar: ProgressBar? = null
 
-    var myListCoord: List<Locations_> ?= null
+    val request = ServiceBuilder.buildService(TmdbEndpoints::class.java)
+
+
     fun runCircles(): List<Locations_>? {
-        val request = ServiceBuilder.buildService(TmdbEndpoints::class.java)
+
         val call = request.getCorrdinates()
         println("ouii ")
         val response = call.execute()
         val myListCoord = response.body()!!.locations
 
 
-            //  println("je suis dans ui thread "+d)
 
 
-
-       /* call.enqueue(object : Callback<MyList> {
-            override fun onResponse(call: Call<MyList>, response: Response<MyList>) {
-                if (response.isSuccessful){
-                 //   Toast.makeText(this@DrawCircles, "Succès", Toast.LENGTH_LONG).show()
-                    println("ouiiiiiiiiii")
-                    myListCoord = response.body()!!.locations
-                    println("res est:"+response.body())
-                   // progress_bar?.visibility = View.GONE
-                   /* recyclerView.apply {
-                        this!!.setHasFixedSize(true)
-                        recyclerView!!.layoutManager = LinearLayoutManager(this@MainActivity)
-                        var adapter = ToDoList(response.body()!!)
-                        recyclerView?.adapter = adapter
-                    }*/
-                }
-            }
-            override fun onFailure(call: Call<MyList>, t: Throwable) {
-                println("failure"+t.message)
-                //Toast.makeText(this@DrawCircles, "${t.message}", Toast.LENGTH_SHORT).show()
-            }
-        })*/
         return myListCoord
+    }
+    fun runLatestData(): Map<String, latest>? {
+      println("je suis ici 1")
+        val call2 = request.getLatestData()
+
+        println("noooooo 1")
+        val response2 = call2.execute()
+        val myLatestList = response2.body()!!
+        return myLatestList
+    }
+    fun getLatestDataCountry(url:String): List<Locations_>? {
+        println("je suis ici 2")
+        var  myLatestList:List<Locations_>  ?= null
+
+        val call = request.getlatestCountry(url)
+
+        val response = call.execute()
+         myLatestList = response.body()!!.locations
+        println("liste est !"+response.body()!!)
+        /* call.enqueue(object : Callback<MyList> {
+        override fun onResponse(call: Call<MyList>, response: Response<MyList>) {
+            if (response.isSuccessful){
+                 myLatestList = response.body()!!.locations
+            }
+        }
+        override fun onFailure(call: Call<MyList>, t: Throwable) {
+            println("failure"+t.message)
+        }
+    })*/
+
+        return myLatestList
     }
 }

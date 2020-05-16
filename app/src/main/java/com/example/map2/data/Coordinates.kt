@@ -1,13 +1,10 @@
 package com.example.map2.data
 
-import android.content.Context
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
-import java.io.IOException
-
-
 data class MyList(
     val locations: List<Locations_>
+)
+data class MyLatest(
+    var latest: List<latest>
 )
 
 data class coordinates(
