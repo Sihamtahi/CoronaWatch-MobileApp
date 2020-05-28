@@ -1,0 +1,32 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">#959DAD</item>
+        <item name="android:textColorPrimary">#000000</item>
+        <item name="actionBarTabTextStyle" >@dimen/com_facebook_profilepictureview_preset_size_large</item>
+        <item name="android:actionBarDivider">@color/colorGray</item>
+        <item name="actionBarStyle">@style/MyActionBarTheme</item>
+        <item name="android:actionBarItemBackground">@drawable/color_gradient_bleu</item>
+
+    </style>
+
+    <style name="AppTheme.NoShadow" parent="AppTheme">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:elevation">0dp</item>
+    </style>
+
+    <style name="MyActionBarTheme" parent="Base.Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="elevation">1dp</item>
+        <item name="height">80dp</item>
+
+    </style>
+    <style name="MyTheme.MyActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="elevation">1dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>
