@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-            xmlns:android="https://schemas.android.com/apk/res/android"
             xmlns:android2="http://schemas.android.com/apk/res/android"
-            xmlns:app="https://schemas.android.com/apk/res-auto"
-            xmlns:app2="http://schemas.android.com/apk/res-auto" xmlns:tools="https://schemas.android.com/tools"
+            xmlns:app2="http://schemas.android.com/apk/res-auto"
             android2:orientation="vertical"
-            tools:context=".loginpage"
             android2:layout_width="match_parent"
-            android2:layout_height="match_parent">
-
+            android2:layout_height="match_parent"
+            android2:background="@drawable/login_page"
+           >
+    <LinearLayout
+            android2:layout_width="match_parent"
+            android2:layout_height="match_parent"
+            android2:background="#CCFFFFFF"
+            android2:orientation="vertical">
+    <LinearLayout
+            android2:layout_width="match_parent"
+            android2:layout_height="match_parent"
+            android2:orientation="vertical"
+            android2:layout_marginTop="100dp">
     <ImageView
             android2:layout_width="166dp"
             android2:layout_height="191dp"
@@ -16,29 +24,27 @@
             android2:layout_marginTop="10dp"
             app2:srcCompat="@drawable/logo"
             android2:id="@+id/logo"/>
-    <com.google.android.gms.common.SignInButton
-            android2:layout_width="200dp"
-            android2:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android2:layout_marginTop="80dp"
-            android2:forceDarkAllowed="true"
-            android:id="@+id/login_google"
-            android2:layout_marginLeft="80dp"
-            android2:id="@+id/login_google"/>
 
-    <com.facebook.login.widget.LoginButton
 
+        <Button android2:layout_width="280dp"
+                android2:layout_height="55dp"
+                android2:layout_gravity="center"
+                android2:textSize="18sp"
+                android2:layout_marginTop="70dp"
+                android2:text="Login with facebook"
+                android2:textColor="@color/blanc"
+                android2:background="@drawable/et_cust"/>
+
+    <Button android2:layout_width="280dp"
+            android2:layout_height="55dp"
+            android2:layout_gravity="center"
+            android2:text="Login with google"
+            android2:textSize="18sp"
             android2:layout_marginTop="20dp"
-            android2:layout_marginLeft="80dp"
-            android2:gravity="center"
-            android2:text="Login"
-            android2:id="@+id/facebook_login"
-            android2:layout_width="200dp"
-            android2:layout_height="wrap_content"/>
-
-
-
+            android2:textColor="@color/blanc"
+            android2:background="@drawable/google_button_login"/>
+    </LinearLayout>
+    </LinearLayout>
     </LinearLayout>
 
 

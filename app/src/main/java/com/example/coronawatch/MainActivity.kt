@@ -1,8 +1,8 @@
 package com.example.coronawatch
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -10,8 +10,18 @@ import com.example.article.R
 import kotlinx.android.synthetic.main.activity_main.*
 import android.widget.LinearLayout
 import android.graphics.drawable.GradientDrawable
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.AbsoluteSizeSpan
+import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
+import com.example.coronawatch.Article.web
+import com.example.coronawatch.Login.Login
+import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.example.article.R.layout.activity_main)
@@ -20,11 +30,27 @@ class MainActivity : AppCompatActivity(){
 
       //  getSupportActionBar()!!.setShowHideAnimationEnabled(false)
       //  set actionbar title
-        val titleActivit: String = getString(com.example.article.R.string.title_name)
-        actionbar!!.title = titleActivit
+        //val titleActivit: String = getString(com.example.article.R.string.title_name)
+        //actionbar!!.title = titleActivit
         //set back button
-        actionbar.setDisplayHomeAsUpEnabled(true)
-       actionbar.setDisplayHomeAsUpEnabled(true)
+       // actionbar.setDisplayHomeAsUpEnabled(true)
+       //actionbar.setDisplayHomeAsUpEnabled(true)
+
+        setSupportActionBar(toolbar)
+
+        nav_view.bringToFront()
+
+        var toggle = ActionBarDrawerToggle(this,
+            drawer_layout, toolbar,
+            R.string.navigation_drawer_close,
+            R.string.navigation_drawer_close
+        )
+
+        drawer_layout.addDrawerListener(toggle)
+        toggle.syncState()
+        nav_view.setNavigationItemSelectedListener(this)
+        nav_view.itemIconTintList = null
+        nav_view.setCheckedItem(R.id.nav_home)
 
         val titWeb: String = getString(com.example.article.R.string.news)
         val titYT: String = getString(com.example.article.R.string.yout)
@@ -66,5 +92,52 @@ class MainActivity : AppCompatActivity(){
         override fun getPageTitle(position: Int): CharSequence? {
             return titleList[position]
         }
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return super.onCreateOptionsMenu(menu)
+        val infl = menuInflater
+        infl.inflate(R.menu.main_menu, menu)
+        for (i in 0 until menu!!.size()) {
+            val item = menu!!.getItem(i)
+            val spanString = SpannableString(menu.getItem(i).title.toString())
+            val end: Int = spanString.getSpanEnd(spanString)
+            val start = spanString.getSpanStart(spanString)
+            spanString.setSpan(AbsoluteSizeSpan(55,true), 0, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            item.setTitle(spanString)
+        }
+        return true
+    }
+    override fun onBackPressed() {
+        if (drawer_layout!!.isDrawerOpen(GravityCompat.START)) {
+            drawer_layout!!.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+
+
+    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+        when (menuItem.getItemId()) {
+            R.id.nav_home -> {
+                val intent = Intent(this,MapsActivity::class.java)
+                startActivity(intent)
+
+            }
+            R.id.nav_login -> {
+                val intent = Intent(this,Login::class.java)
+                startActivity(intent)
+
+            }
+//            R.id.nav_logout -> {
+//
+//                menu!!.findItem(R.id.nav_logout).isVisible = false
+//                menu!!.findItem(R.id.nav_profile).isVisible = false
+//                menu!!.findItem(R.id.nav_login).isVisible = true
+//            }
+
+        }
+        drawer_layout.closeDrawer(GravityCompat.START)
+        return true
     }
 }

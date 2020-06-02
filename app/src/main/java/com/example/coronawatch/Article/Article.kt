@@ -1,4 +1,4 @@
-package com.example.coronawatch
+package com.example.coronawatch.Article
 
 import android.app.AlertDialog
 import android.content.Intent
@@ -9,12 +9,11 @@ import android.text.method.ScrollingMovementMethod
 import android.view.MenuItem
 import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.article.R
-import com.example.coronawatch.ArticleRecyclerAdapter.Companion.IMAGE
-import com.example.coronawatch.ArticleRecyclerAdapter.Companion.TEXT
-import com.example.coronawatch.ArticleRecyclerAdapter.Companion.TITLE
+import com.example.coronawatch.Article.ArticleRecyclerAdapter.Companion.IMAGE
+import com.example.coronawatch.Article.ArticleRecyclerAdapter.Companion.TEXT
+import com.example.coronawatch.Article.ArticleRecyclerAdapter.Companion.TITLE
 import com.example.model.Comments
 import com.google.gson.GsonBuilder
 import com.squareup.picasso.Picasso
@@ -40,8 +39,9 @@ class Article : AppCompatActivity() {
         text.setMovementMethod(ScrollingMovementMethod())
         supportActionBar?.title= articleItem
 
-        Picasso.with(applicationContext).load(intent.getStringExtra(IMAGE)).resize(600*2,278*2).into(pub_img)
+       // Picasso.with(applicationContext).load(intent.getStringExtra(IMAGE)).resize(600*2,278*2).into(pub_img)
 
+        Picasso.get().load(intent.getStringExtra(IMAGE)).resize(600*2,278*2).into(pub_img)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             text.setText(Html.fromHtml(intent.getStringExtra(TEXT), Html.FROM_HTML_MODE_COMPACT))
@@ -97,7 +97,7 @@ class Article : AppCompatActivity() {
         val client = OkHttpClient()
         client.newCall(request).enqueue(object: Callback {
             override fun onResponse(call: Call, response: Response) {
-                val body = response?.body?.string()
+                val body = response?.body!!.string()
                 val gson = GsonBuilder().create()
                 var comments: Comments = gson.fromJson(body, Comments::class.java)
                for (item in comments){

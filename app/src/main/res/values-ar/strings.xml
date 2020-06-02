@@ -24,4 +24,24 @@
     <string name="sign_in_facebook">تسجيل الدخول باستخدام الفيسبوك</string>
     <string name="sign_in_google">تسجيل الدخول باستخدام جوجل</string>
     <string name="string"/>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- ************************************** -->
+
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_drawer_">Drawer_Activity</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="_12">12</string>
+    <string name="_58">58</string>
+    <string name="_105">105</string>
+    <string name="عددالإصابات">عددالإصابات</string>
+    <string name="عددالوفيات">عددالوفيات</string>
+    <string name="todo">TODO</string>
+    <string name="notice">قم بالتمرير لأعلى لعرض المزيد من المعلومات</string>
+    <string name="عدد_حالات_الشفاء">عدد حالات الشفاء</string>
+
 </resources>

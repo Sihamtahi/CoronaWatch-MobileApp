@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.ImageView
 import android.widget.TextView
-import com.squareup.picasso.Picasso
+//import com.squareup.picasso.Picasso
 import com.example.article.R
 import kotlinx.android.synthetic.main.profile.*
 
@@ -32,6 +32,6 @@ class profileactivity: AppCompatActivity() {
 
     }
     fun ImageView.loadUrl(url: String) {
-        Picasso.with(context).load(url).into(this)
+        //Picasso.with(context).load(url).into(this)
     }
 }

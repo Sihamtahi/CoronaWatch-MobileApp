@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimary">#3994FE</color>
+    <color name="blanc">#FFFFFF</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#3497FD</color>
     <color name="colorGray">#808080</color>
@@ -10,5 +11,30 @@
     <color name="Gray_back">#F7F7F7</color>
     <color name="GoogleTextColor">#444444</color>
     <color name="text_article">#78849E</color>
+    <color name="blue">#2A2E43</color>
+    <color name="colorDrawerText">#454F63</color>
+    <color name="fbcolor">#4267B2</color>
+
+    <!-- Couleurs utilisées pour cartes intercatives-->
+
+    <color name="c1">#65c69d</color>
+    <color name="c2">#666f78</color>
+    <color name="c3">#353e47</color>
+    <color name="white">#fff</color>
+    <color name="gray">#797979</color>
+    <color name="logincolor">#ff9900</color>
+    <color name="blue_maq">#3497FD</color>
+    <color name="gary_maq">#959DAD</color>
+    <color name="bluef_maq">#2A2E43</color>
+    <color name="garyf_maq">#454F63</color>
+    <color name="bluec_maq">#3ACCE1</color>
+    <color name="yellow_maq">#FFB900</color>
+    <color name="orange_maq">#FF9057</color>
+    <color name="pink_maq">#C840E9</color>
+
+    <color name="red_maq">#FF0000</color> //255,0,0
+    <color name="green_maq">#0ABF0A</color>//10,191,10
+
+    <!-- ************************************** -->
 
 </resources>
