@@ -9,19 +9,28 @@ import android.location.Address
 import android.location.Geocoder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.AbsoluteSizeSpan
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
+import android.view.*
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import com.example.article.R
+import com.example.coronawatch.Login.Login
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_maps.*
+import kotlinx.android.synthetic.main.activity_maps.nav_view_menu
 import org.jetbrains.anko.doAsync
 import okhttp3.*
 import org.json.JSONObject
@@ -29,7 +38,8 @@ import java.io.IOException
 import java.util.*
 
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback , NavigationView.OnNavigationItemSelectedListener{
+
 
     var malade: TextView? = null
     var confirme: TextView? = null
@@ -39,6 +49,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     var btnConfirme : Button ?= null
     var btnRetablis : Button ?= null
     var switchMap : Button ?= null
+    var Btnmenu : Button ?= null
     private val TAG = MapsActivity::class.java.simpleName
     val client = OkHttpClient()
     var myListCoord: List<Locations_> ?= null
@@ -56,6 +67,23 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         confirme = findViewById(R.id.confirmé)
         retablis = findViewById(R.id.suspect)
         switchMap = findViewById(R.id.affGen)
+        Btnmenu = findViewById(R.id.menu_maps)
+        /** la partie concernant menu **/
+
+        nav_view_menu.bringToFront()
+
+        Btnmenu!!.setOnClickListener{
+            drawer_layout_maps.openDrawer(Gravity.LEFT)
+
+        }
+
+        nav_view_menu.setNavigationItemSelectedListener(this)
+        nav_view_menu.itemIconTintList = null
+        nav_view_menu.setCheckedItem(R.id.nav_home)
+
+
+
+        /*******************************/
 
         /** la partie ajoutée concernant la carte (map)**/
         val mapFragment = supportFragmentManager
@@ -359,5 +387,53 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         var aa = DrawCircles()
         listData = aa.getLatestDataCountry(url)
         return listData
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return super.onCreateOptionsMenu(menu)
+        val infl = menuInflater
+        infl.inflate(R.menu.main_menu, menu)
+        for (i in 0 until menu!!.size()) {
+            val item = menu!!.getItem(i)
+            val spanString = SpannableString(menu.getItem(i).title.toString())
+            val end: Int = spanString.getSpanEnd(spanString)
+            val start = spanString.getSpanStart(spanString)
+            spanString.setSpan(AbsoluteSizeSpan(55,true), 0, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            item.setTitle(spanString)
+        }
+        return true
+    }
+    override fun onBackPressed() {
+        if (drawer_layout_maps!!.isDrawerOpen(GravityCompat.START)) {
+            drawer_layout_maps!!.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
+    }
+    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+
+        when (menuItem.getItemId()) {
+            R.id.nav_home -> {
+                val intent = Intent(this,MapsActivity::class.java)
+                startActivity(intent)
+
+            }
+            R.id.nav_login -> {
+
+                val intent = Intent(this, Login::class.java)
+                startActivity(intent)
+
+            }
+            R.id.nav_feed -> {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+
+            }
+            R.id.nav_logout -> {
+
+            }
+
+        }
+        drawer_layout_maps.closeDrawer(GravityCompat.START)
+        return true
     }
 }

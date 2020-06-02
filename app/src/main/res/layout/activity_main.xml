@@ -10,7 +10,7 @@
         android:id="@+id/drawer_layout">
 
     <com.google.android.material.navigation.NavigationView
-            android:id="@+id/nav_view"
+            android:id="@+id/nav_view_menu"
             android:layout_width="230dp"
             android:layout_height="match_parent"
             app:headerLayout="@layout/header"

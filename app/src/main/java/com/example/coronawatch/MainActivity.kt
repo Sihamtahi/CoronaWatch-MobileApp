@@ -26,19 +26,19 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         super.onCreate(savedInstanceState)
         setContentView(com.example.article.R.layout.activity_main)
 
-        val actionbar = supportActionBar
+       // val actionbar = supportActionBar
 
-      //  getSupportActionBar()!!.setShowHideAnimationEnabled(false)
-      //  set actionbar title
+       // getSupportActionBar()!!.setShowHideAnimationEnabled(false)
+
         //val titleActivit: String = getString(com.example.article.R.string.title_name)
         //actionbar!!.title = titleActivit
         //set back button
-       // actionbar.setDisplayHomeAsUpEnabled(true)
+        //actionbar.setDisplayHomeAsUpEnabled(true)
        //actionbar.setDisplayHomeAsUpEnabled(true)
 
         setSupportActionBar(toolbar)
 
-        nav_view.bringToFront()
+        nav_view_menu.bringToFront()
 
         var toggle = ActionBarDrawerToggle(this,
             drawer_layout, toolbar,
@@ -48,9 +48,9 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
-        nav_view.setNavigationItemSelectedListener(this)
-        nav_view.itemIconTintList = null
-        nav_view.setCheckedItem(R.id.nav_home)
+        nav_view_menu.setNavigationItemSelectedListener(this)
+        nav_view_menu.itemIconTintList = null
+        nav_view_menu.setCheckedItem(R.id.nav_home)
 
         val titWeb: String = getString(com.example.article.R.string.news)
         val titYT: String = getString(com.example.article.R.string.yout)
@@ -124,17 +124,23 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 startActivity(intent)
 
             }
+            R.id.nav_feed -> {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+
+            }
             R.id.nav_login -> {
                 val intent = Intent(this,Login::class.java)
                 startActivity(intent)
 
             }
-//            R.id.nav_logout -> {
+           R.id.nav_logout -> {
+
 //
 //                menu!!.findItem(R.id.nav_logout).isVisible = false
 //                menu!!.findItem(R.id.nav_profile).isVisible = false
 //                menu!!.findItem(R.id.nav_login).isVisible = true
-//            }
+            }
 
         }
         drawer_layout.closeDrawer(GravityCompat.START)

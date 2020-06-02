@@ -37,10 +37,10 @@
         </activity>
 
         <activity android:name="com.example.coronawatch.Comment"/>
-        <activity android:name="com.example.coronawatch.MapsActivity"/>
+        <activity android:name="com.example.coronawatch.MainActivity"/>
         <activity android:name="com.example.coronawatch.buttumnav"/>
 
-        <activity android:name="com.example.coronawatch.MainActivity"
+        <activity android:name="com.example.coronawatch.MapsActivity"
                   android:theme="@style/AppTheme.NoShadow">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
