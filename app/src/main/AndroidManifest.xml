@@ -37,10 +37,11 @@
         </activity>
 
         <activity android:name="com.example.coronawatch.Comment"/>
-        <activity android:name="com.example.coronawatch.MainActivity"/>
+        <activity android:name="com.example.coronawatch.MapsActivity"
+        android:label="أخبار فيروس كورونا"> </activity>
         <activity android:name="com.example.coronawatch.buttumnav"/>
 
-        <activity android:name="com.example.coronawatch.MapsActivity"
+        <activity android:name="com.example.coronawatch.MainActivity"
                   android:theme="@style/AppTheme.NoShadow">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -50,8 +51,7 @@
         </activity>
 
         <activity android:name="com.example.coronawatch.Article.Article" />
-        <activity android:name="com.example.coronawatch.Login.Login" />
-
+        <activity android:name="com.example.coronawatch.login" />
 
         <meta-data
                 android:name="preloaded_fonts"

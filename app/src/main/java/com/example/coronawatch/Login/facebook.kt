@@ -1,4 +1,4 @@
-package com.example.coronawatch
+package com.example.coronawatch.Login
 
 
 import android.os.Bundle
@@ -10,10 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fb.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.article.R
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_facebook.*
+import com.example.coronawatch.RecyclerAdapter
 
-    class facebook : Fragment() {
+class facebook : Fragment() {
         var layoutManager: RecyclerView.LayoutManager? = null
         var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
     override fun onCreateView(

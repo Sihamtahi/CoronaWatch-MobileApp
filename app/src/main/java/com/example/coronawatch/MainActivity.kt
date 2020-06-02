@@ -18,15 +18,15 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import com.example.coronawatch.Article.web
-import com.example.coronawatch.Login.Login
+import com.example.coronawatch.Login.*
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.example.article.R.layout.activity_main)
+        setContentView(R.layout.activity_main)
 
-       // val actionbar = supportActionBar
+     //  val actionbar = supportActionBar
 
        // getSupportActionBar()!!.setShowHideAnimationEnabled(false)
 
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         //actionbar!!.title = titleActivit
         //set back button
         //actionbar.setDisplayHomeAsUpEnabled(true)
-       //actionbar.setDisplayHomeAsUpEnabled(true)
+        //actionbar.setDisplayHomeAsUpEnabled(true)
 
         setSupportActionBar(toolbar)
 
@@ -52,8 +52,8 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         nav_view_menu.itemIconTintList = null
         nav_view_menu.setCheckedItem(R.id.nav_home)
 
-        val titWeb: String = getString(com.example.article.R.string.news)
-        val titYT: String = getString(com.example.article.R.string.yout)
+        val titWeb: String = getString(R.string.news)
+        val titYT: String = getString(R.string.yout)
         val adapter = MyviewPagerAdapter(supportFragmentManager)
 
         // split tab Layout
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         if (root is LinearLayout) {
             (root as LinearLayout).showDividers = LinearLayout.SHOW_DIVIDER_MIDDLE
             val drawable = GradientDrawable()
-            drawable.setColor(resources.getColor(com.example.article.R.color.material_grey_600))
+            drawable.setColor(resources.getColor(R.color.material_grey_600))
             drawable.setSize(2, 1)
             (root as LinearLayout).dividerPadding = 10
             (root as LinearLayout).dividerDrawable = drawable
@@ -130,7 +130,7 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
             }
             R.id.nav_login -> {
-                val intent = Intent(this,Login::class.java)
+                val intent = Intent(this,login::class.java)
                 startActivity(intent)
 
             }

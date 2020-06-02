@@ -67,7 +67,7 @@
                             android:layout_gravity="center"
                             android:textSize="20sp"
                             android:layout_marginRight="10dp"
-                            android:textColor="@color/colorPrimaryDark"
+                            android:textColor="#5B616A"
                             android:id="@+id/name"/>
                     <ImageView
                             android:id="@+id/pub_img"

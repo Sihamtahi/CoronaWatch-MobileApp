@@ -1,4 +1,4 @@
-package com.example.coronawatch
+package com.example.coronawatch.Login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

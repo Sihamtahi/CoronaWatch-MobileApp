@@ -26,7 +26,9 @@
             android2:id="@+id/logo"/>
 
 
-        <Button android2:layout_width="280dp"
+        <Button
+                android2:id="@+id/loginfacebook"
+                android2:layout_width="280dp"
                 android2:layout_height="55dp"
                 android2:layout_gravity="center"
                 android2:textSize="18sp"
@@ -35,7 +37,9 @@
                 android2:textColor="@color/blanc"
                 android2:background="@drawable/et_cust"/>
 
-    <Button android2:layout_width="280dp"
+    <Button
+            android2:id="@+id/logingoogle"
+            android2:layout_width="280dp"
             android2:layout_height="55dp"
             android2:layout_gravity="center"
             android2:text="Login with google"

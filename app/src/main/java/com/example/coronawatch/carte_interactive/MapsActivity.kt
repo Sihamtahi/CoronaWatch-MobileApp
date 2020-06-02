@@ -22,7 +22,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.article.R
-import com.example.coronawatch.Login.Login
+import com.example.coronawatch.Login.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -419,7 +419,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback , NavigationView.On
             }
             R.id.nav_login -> {
 
-                val intent = Intent(this, Login::class.java)
+                val intent = Intent(this, login::class.java)
                 startActivity(intent)
 
             }

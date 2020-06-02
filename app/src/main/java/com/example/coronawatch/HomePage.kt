@@ -9,6 +9,7 @@ import com.example.article.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 import com.example.coronawatch.Article.web
+import com.example.coronawatch.Login.facebook
 
 
 class HomePage : AppCompatActivity(){
