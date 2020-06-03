@@ -67,7 +67,7 @@ class Comment : AppCompatActivity() {
         likeImage.setBackgroundResource(intent.getIntExtra("likeImage",0))
         commentImage.setBackgroundResource(intent.getIntExtra("commentImage",0))
         avatarImage.setImageResource(intent.getIntExtra("avatarImage",0))
-       // pubImage.setI
+        // pubImage.setI
 
 
         actionbar!!.title = titleActivit
@@ -75,7 +75,7 @@ class Comment : AppCompatActivity() {
         actionbar.setDisplayHomeAsUpEnabled(true)
 
         var listview: ListView  = findViewById(R.id.listCom)
-       // var ListElements = arrayOf("kkk")
+        // var ListElements = arrayOf("kkk")
         var ListElementsArrayList = LinkedList<String>()
         val editText = findViewById(R.id.com) as EditText
         val btnSend = findViewById(R.id.send) as Button

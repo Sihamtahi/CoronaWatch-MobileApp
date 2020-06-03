@@ -29,4 +29,4 @@ class youtube : Fragment() {
         adapter = RecyclerAdapter()
         recycler_view.adapter = adapter
     }
-    }
+}
