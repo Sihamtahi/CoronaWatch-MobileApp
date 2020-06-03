@@ -32,7 +32,6 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
 
     private val images_pub = intArrayOf(R.mipmap.img, R.mipmap.img,R.mipmap.img)
-
     private val images_likes = intArrayOf(R.mipmap.path, R.mipmap.path,R.mipmap.path)
     private val images_likes_red = intArrayOf(R.mipmap.lik, R.mipmap.lik,R.mipmap.lik)
 

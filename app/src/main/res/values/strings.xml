@@ -4,7 +4,7 @@
     <string name="google_maps_key" translatable="false" templateMergeStrategy="preserve">
         AIzaSyDSXGc8PGMNhB_Q7hN_a4gk_9fR9jm67m0
     </string>
-    <string name="app_name">CoronaWatch</string>
+    <string name="app_name">TestCorona</string>
     <string name="title_name">\nآخر الأخبار</string>
     <string name="fb">فايسبوك</string>
     <string name="yout">اخر الاخبار</string>

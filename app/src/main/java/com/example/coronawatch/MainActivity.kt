@@ -36,9 +36,9 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-     //  val actionbar = supportActionBar
+        //  val actionbar = supportActionBar
 
-       // getSupportActionBar()!!.setShowHideAnimationEnabled(false)
+        // getSupportActionBar()!!.setShowHideAnimationEnabled(false)
 
         //val titleActivit: String = getString(com.example.article.R.string.title_name)
         //actionbar!!.title = titleActivit
@@ -162,7 +162,7 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 startActivity(intent)
 
             }
-           R.id.nav_logout -> {
+            R.id.nav_logout -> {
 
 //
 //                menu!!.findItem(R.id.nav_logout).isVisible = false

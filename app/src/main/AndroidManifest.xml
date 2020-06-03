@@ -38,7 +38,7 @@
 
         <activity android:name="com.example.coronawatch.Comment"/>
         <activity android:name="com.example.coronawatch.MapsActivity"
-        android:label="أخبار فيروس كورونا"> </activity>
+                  android:label="أخبار فيروس كورونا"> </activity>
         <activity android:name="com.example.coronawatch.buttumnav"/>
 
         <activity android:name="com.example.coronawatch.MainActivity"
