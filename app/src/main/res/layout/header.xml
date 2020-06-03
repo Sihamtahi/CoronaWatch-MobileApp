@@ -14,12 +14,14 @@
             android:layout_gravity="top"
             android:padding="30dp">
         <ImageView
+                android:id="@+id/photoProfile"
                 android:layout_width="75dp"
                 android:layout_marginTop="10dp"
                 android:layout_height="75dp"
                 android:background="@mipmap/avatar"/>
 
         <TextView
+                android:id="@+id/nom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="عبد النور أمقران"
@@ -27,6 +29,7 @@
                 android:textSize="24sp"/>
 
         <TextView
+                android:id="@+id/mail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="amokraneabdenour@esi.dz"

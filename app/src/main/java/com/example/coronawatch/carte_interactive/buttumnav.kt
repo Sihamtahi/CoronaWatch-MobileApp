@@ -284,7 +284,8 @@ class buttumnav : AppCompatActivity() ,OnMapReadyCallback {
     /****************************La fonction showAlertDialog affiche le dialog pour afficher les différentes informations lieés à une region données ************/
 
     private fun showAlertDialog(latlng: LatLng?,n1:Int, n2 : Int ,n3:Int,n4 : Int,n5:Int, wil:String , com:String)
-    {   val placeForInformation = LayoutInflater.from(this).inflate(R.layout.layout_dialog_info,null)
+    {
+        val placeForInformation = LayoutInflater.from(this).inflate(R.layout.layout_dialog_info,null)
         val dial = AlertDialog.Builder(this)
         var infoRegion :ArrayList<Int> = ArrayList()
         val cancel_btn:Button = placeForInformation.findViewById(R.id.cancel_dialog)

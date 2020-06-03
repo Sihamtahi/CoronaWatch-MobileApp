@@ -13,15 +13,25 @@ import android.graphics.drawable.GradientDrawable
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.AbsoluteSizeSpan
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import com.example.coronawatch.Article.web
 import com.example.coronawatch.Login.*
 import com.google.android.material.navigation.NavigationView
+import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener{
+    var nameTxt: TextView ?= null
+    var emailTxt: TextView ?= null
+    var genderTxt: TextView ?= null
+    var photo: ImageView?= null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -51,6 +61,24 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         nav_view_menu.setNavigationItemSelectedListener(this)
         nav_view_menu.itemIconTintList = null
         nav_view_menu.setCheckedItem(R.id.nav_home)
+
+        val placeForInformation = LayoutInflater.from(this).inflate(R.layout.header,null)
+        nameTxt = placeForInformation.findViewById(R.id.nom)
+        emailTxt = placeForInformation.findViewById(R.id.mail)
+        photo = placeForInformation.findViewById(R.id.photoProfile)
+
+        var islogged = intent.getBooleanExtra("logged",false)
+        if (islogged){
+
+            val name = intent.getStringExtra("name")
+            val email = intent.getStringExtra("email")
+            val ProfilePicURL = intent.getStringExtra("url")
+
+            Picasso.get().load(ProfilePicURL).resize(600*2,278*2).into(photo)
+
+            nameTxt!!.text = name
+            emailTxt!!.text = email
+        }
 
         val titWeb: String = getString(R.string.news)
         val titYT: String = getString(R.string.yout)

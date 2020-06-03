@@ -55,7 +55,7 @@ class login : AppCompatActivity() {
     private var facebooklogout: Button? = null
     private var callbackManager: CallbackManager? = null
 
-    private var googlelogin: SignInButton? = null
+    private var googlelogin: Button? = null
     lateinit var mGoogleSignInClient: GoogleSignInClient
     private val RC_SIGN_IN = 9001
 
@@ -86,6 +86,7 @@ class login : AppCompatActivity() {
                         val request = GraphRequest.newMeRequest(accessToken) { `object`, response ->
                             println("===================JSON Object" + `object`)
                             //Intializing each parameters avaible in graph API
+                            var logged = true
                             var id = ""
                             var name = ""
                             var email = ""
@@ -107,14 +108,16 @@ class login : AppCompatActivity() {
                                 if (`object`.has("picture")) {
                                     url = `object`.getJSONObject("picture").getJSONObject("data").getString("url")
                                 }
-                                val intent = Intent(this@login, ProfileUser::class.java)
+                                val intent = Intent(this@login, MainActivity::class.java)
                                 println("logged in facebook")
+
                                 var bundle = Bundle()
+                                bundle.putBoolean("logged",logged)
                                 bundle.putString("name", name)
                                 bundle.putString("email", email)
                                 bundle.putString("gender", gender)
                                 bundle.putString("url", url)
-                               // intent.putExtras(bundle)
+                                intent.putExtras(bundle)
                                 startActivity(intent)
 
                             } catch (e: Exception) {
@@ -146,13 +149,13 @@ class login : AppCompatActivity() {
         //}
 
         // Log In with Google
-        /*googlelogin = findViewById(R.id.logingoogle)
+        googlelogin = findViewById(R.id.logingoogle)
         googlelogin!!.setOnClickListener {
             val signInIntent = mGoogleSignInClient.signInIntent
             startActivityForResult(
                 signInIntent, RC_SIGN_IN
             )
-        }*/
+        }
 
     }
 

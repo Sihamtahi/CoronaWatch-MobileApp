@@ -20,7 +20,7 @@ class ProfileUser : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.profile)
 
-        nameTxt = findViewById(R.id.name)
+       nameTxt = findViewById(R.id.name)
         emailTxt = findViewById(R.id.mail)
         genderTxt = findViewById(R.id.gender)
         photoProfile = findViewById(R.id.profileImage)
