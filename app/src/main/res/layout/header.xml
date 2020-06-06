@@ -15,28 +15,30 @@
             android:padding="30dp">
         <ImageView
                 android:id="@+id/photoProfile"
-                android:layout_width="75dp"
+                android:layout_width="68dp"
                 android:layout_marginTop="10dp"
-                android:layout_height="75dp"
+                android:layout_height="65dp"
                 android:background="@mipmap/avatar"/>
 
         <TextView
                 android:id="@+id/nom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="عبد النور أمقران"
+                android:layout_marginTop="8dp"
+                android:text="الكنية و الاسم الأول"
                 android:textColor="#FFFFFF"
-                android:textSize="24sp"/>
+                android:textSize="22sp"/>
 
         <TextView
                 android:id="@+id/mail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="amokraneabdenour@esi.dz"
+                android:text="البريد الإلكتروني"
+                android:textSize="17sp"
                 android:textColor="#FFFFFF"
                 android:textColorHighlight="#03A9F4"
                 android:textColorLink="#00FFFFFF"
-                android:textSize="14sp"/>
+        />
     </LinearLayout>
     <Button android:layout_width="match_parent"
             android:layout_height="9dp"

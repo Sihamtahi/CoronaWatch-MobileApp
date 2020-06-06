@@ -26,9 +26,6 @@ class ArticleRecyclerAdapter (val article : List<ArticleItem>): RecyclerView.Ada
         val IMAGE="image"
     }
 
-
-//
-
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var shareImage: Button
@@ -120,18 +117,6 @@ class ArticleRecyclerAdapter (val article : List<ArticleItem>): RecyclerView.Ada
         val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm",local)
         val output: String = formatter.format(parser.parse(item.publicationDate))
 
-        val dates = SimpleDateFormat("MM/dd/yyyy")
-        val CurrentDate = " 23/05/2020"
-        val CurrentDate2 = "24/05/2020"
-        val date2 = dates.parse(CurrentDate)
-        var difference = Math.abs(date2.getTime() - dates.parse(CurrentDate2).getTime())
-        var differenceDates = difference / (24 * 60 * 60 * 1000)
-
-        val numOfDays =  (difference / (1000 * 60 * 60 * 24)).toInt()
-        val hours =  (difference / (1000 * 60 * 60)).toInt()
-        val minutes = (difference / (1000 * 60)).toInt()
-        val seconds = (difference / (1000)).toInt()
-        println("date est "+numOfDays.toString()+" "+ hours+ " " +minutes+" "+ seconds )
 
         holder.time.text =output
         holder.name.text = item.title
@@ -167,13 +152,4 @@ class ArticleRecyclerAdapter (val article : List<ArticleItem>): RecyclerView.Ada
         return article.size
     }
 
-    /*fun ViewShot(v: View): Bitmap {
-        val height = v.height
-        val width = v.width
-        val b = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
-        val c = Canvas(b)
-        v.layout(0, 0, v.layoutParams.width, v.layoutParams.height)
-        v.draw(c)
-        return b
-    }*/
 }

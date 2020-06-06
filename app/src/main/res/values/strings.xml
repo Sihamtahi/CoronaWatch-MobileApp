@@ -1,6 +1,7 @@
 <resources>
     <string name="facebook_app_id">503166670572438</string>
     <string name="fb_login_protocol_scheme">fb503166670572438</string>
+    <string name="server_client_id">742338064904-u9kdjgv0k9475lq2ldmsh8g7uuqnmrur.apps.googleusercontent.com</string>
     <string name="google_maps_key" translatable="false" templateMergeStrategy="preserve">
         AIzaSyDSXGc8PGMNhB_Q7hN_a4gk_9fR9jm67m0
     </string>

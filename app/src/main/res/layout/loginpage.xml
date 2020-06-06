@@ -33,7 +33,7 @@
                     android2:layout_gravity="center"
                     android2:textSize="18sp"
                     android2:layout_marginTop="70dp"
-                    android2:text="Login with facebook"
+                    android2:text="تسجيل الدخول عبر الفيسبوك"
                     android2:textColor="@color/blanc"
                     android2:background="@drawable/et_cust"/>
 
@@ -42,7 +42,7 @@
                     android2:layout_width="280dp"
                     android2:layout_height="55dp"
                     android2:layout_gravity="center"
-                    android2:text="Login with google"
+                    android2:text="تسجيل الدخول عبر جوجل"
                     android2:textSize="18sp"
                     android2:layout_marginTop="20dp"
                     android2:textColor="@color/blanc"

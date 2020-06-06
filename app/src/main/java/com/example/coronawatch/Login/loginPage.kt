@@ -1,12 +1,9 @@
 package com.example.coronawatch
 
 
-import android.R.*
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageView
-import android.widget.TextView
 import android.content.pm.PackageInfo
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.AccessToken
@@ -14,32 +11,16 @@ import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.GraphRequest
-import com.facebook.GraphResponse
-import com.facebook.Profile
 import android.util.Base64
-import com.facebook.login.widget.LoginButton
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.loginpage.*
-import org.json.JSONException
-import org.json.JSONObject
-import android.content.pm.Signature
 import java.util.Arrays
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import com.facebook.ProfileTracker
-import android.graphics.Color
-import java.net.URL
 import android.content.pm.PackageManager
+import android.preference.PreferenceManager
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import java.security.MessageDigest
-import java.util.*
 import android.widget.*
 import com.example.article.R
-import com.example.coronawatch.Login.ProfileUser
-import com.example.coronawatch.Login.loginGoogle
+import com.google.android.gms.auth.api.Auth
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -47,7 +28,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
-import com.google.android.gms.common.SignInButton
 
 class login : AppCompatActivity() {
 
@@ -87,6 +67,8 @@ class login : AppCompatActivity() {
                             println("===================JSON Object" + `object`)
                             //Intializing each parameters avaible in graph API
                             var logged = true
+                            var prefsLoggin = PreferenceManager.getDefaultSharedPreferences(this@login)
+                            prefsLoggin.edit().putBoolean("IsloginFb", logged).commit()
                             var id = ""
                             var name = ""
                             var email = ""
@@ -148,10 +130,21 @@ class login : AppCompatActivity() {
         //finish();
         //}
 
+        //Shared pref to google sign in
+
+        var prefsGoogleSignin = PreferenceManager.getDefaultSharedPreferences(this)
+
+
         // Log In with Google
         googlelogin = findViewById(R.id.logingoogle)
         googlelogin!!.setOnClickListener {
+            var gso: GoogleSignInOptions  =  GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.server_client_id))
+             .requestEmail()
+             .build()
+            mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
             val signInIntent = mGoogleSignInClient.signInIntent
+           // prefsGoogleSignin.edit().putStringSet("Islogin", signInIntent).commit()
             startActivityForResult(
                 signInIntent, RC_SIGN_IN
             )
@@ -173,6 +166,10 @@ class login : AppCompatActivity() {
             val account = completedTask.getResult(
                 ApiException::class.java
             )
+            val isSigned : Boolean = true
+           var prefs = PreferenceManager.getDefaultSharedPreferences(this)
+           prefs.edit().putBoolean("Islogin", isSigned).commit() // islogin is a boolean value of my login status
+
             // Signed in successfully
             val googleId = account?.id ?: ""
             Log.i("Google ID",googleId)
@@ -191,14 +188,17 @@ class login : AppCompatActivity() {
 
             val googleIdToken = account?.idToken ?: ""
             Log.i("Google ID Token", googleIdToken)
-            println("je suis laaaaaaaaaa")
-            val myIntent = Intent(this, loginGoogle::class.java)
-            /*myIntent.putExtra("google_id", googleId)
+
+            val myIntent = Intent(this, MainActivity::class.java)
+
+
+            myIntent.putExtra("google_id", googleId)
+            myIntent.putExtra("isSigned", isSigned)
             myIntent.putExtra("google_first_name", googleFirstName)
             myIntent.putExtra("google_last_name", googleLastName)
             myIntent.putExtra("google_email", googleEmail)
             myIntent.putExtra("google_profile_pic_url", googleProfilePicURL)
-            myIntent.putExtra("google_id_token", googleIdToken)*/
+            myIntent.putExtra("google_id_token", googleIdToken)
             startActivity(myIntent)
 
         } catch (e: ApiException) {

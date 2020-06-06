@@ -67,17 +67,22 @@
                         android:layout_gravity="center"
                         android:textSize="20sp"
                         android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
                         android:textColor="#5B616A"
                         android:id="@+id/name"/>
-                <ImageView
-                        android:id="@+id/pub_img"
-                        android:layout_width="355dp"
-                        android:layout_height="215dp"
-                        android:layout_gravity="center"
+
+                <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:layout_marginLeft="5dp"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/img"/>
+                        app:autoPlay="false"
+                        app:showFullScreenButton="true"
+                        app:showYouTubeButton="false"
+                        android:id="@+id/pub_img"
+                         android:layout_marginLeft="5dp"
+                        android:background="@drawable/video_background"
+                >
+                </com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
                 <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -89,15 +94,14 @@
                             android:layout_height="23dp"
                             android:layout_gravity="left"
                             android:layout_marginLeft="60dp"
-                            android:background="@drawable/share"/>
+                            android:background="@mipmap/share"/>
                     <TextView
                             android:id="@+id/nb_comm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left"
-                            android:fontFamily="@font/roboto_light"
                             android:layout_marginLeft="130dp"
-                            android:text="nb "
+                            android:text="12 "
                             android:textSize="16sp" />
                     <Button
                             android:id="@+id/comment"
@@ -112,8 +116,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left"
-                            android:fontFamily="@font/roboto_light"
-                            android:text="nb like"
+                            android:text="17"
                             android:layout_marginLeft="30dp"
                             android:textSize="16sp" />
                     <RelativeLayout android:layout_width="match_parent"

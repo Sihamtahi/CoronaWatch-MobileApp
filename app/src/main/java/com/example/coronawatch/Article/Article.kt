@@ -4,11 +4,14 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.text.Html
 import android.text.method.ScrollingMovementMethod
 import android.view.MenuItem
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.example.article.R
 import com.example.coronawatch.Article.ArticleRecyclerAdapter.Companion.IMAGE
@@ -27,6 +30,8 @@ class Article : AppCompatActivity() {
     lateinit var adapter:ArrayAdapter<String>
     lateinit var itemlist:ArrayList<String>
 
+    var sendBtn: Button ?= null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.article_activity)
@@ -39,6 +44,7 @@ class Article : AppCompatActivity() {
         text.setMovementMethod(ScrollingMovementMethod())
         supportActionBar?.title= articleItem
 
+        sendBtn = findViewById<Button>(R.id.send)
        // Picasso.with(applicationContext).load(intent.getStringExtra(IMAGE)).resize(600*2,278*2).into(pub_img)
 
         Picasso.get().load(intent.getStringExtra(IMAGE)).resize(600*2,278*2).into(pub_img)
@@ -50,18 +56,35 @@ class Article : AppCompatActivity() {
         }
 
         fetchJson()
-        send.setOnClickListener{
-            // Build an AlertDialog
-            val builder = AlertDialog.Builder(send.context)
-            // Set a title for alert dialog
-            builder.setTitle(R.string.auto_cmp)
-            // Ask the final question
-            builder.setMessage(R.string.err)
-            val dialog = builder.create()
-            // Display the alert dialog on interface
-            dialog.show()
+        var prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        var Islogin = prefs.getBoolean("Islogin", false)
+        var editText = findViewById<EditText>(R.id.com)
+            send.setOnClickListener{
+                if(Islogin){
+                    val message = editText.text.toString()
+                    if(message.isEmpty()){
+                        editText.setError("من فضلك أدخل تعليقك")
+                        //textview.requestFocus()
+                    }else{
+                        //textview.setText(message)
+                        itemlist.add(message)
+                        editText.setText("")
+                        adapter.notifyDataSetChanged()
+                    }
+                }else{
+                    // Build an AlertDialog
+                    val builder = AlertDialog.Builder(send.context)
+                    // Set a title for alert dialog
+                    builder.setTitle(R.string.auto_cmp)
+                    // Ask the final question
+                    builder.setMessage(R.string.err)
+                    val dialog = builder.create()
+                    // Display the alert dialog on interface
+                    dialog.show()
+                }
+            }
 
-        }
+
         like.setOnClickListener {
             Red.visibility = View.VISIBLE
             like.visibility = View.INVISIBLE

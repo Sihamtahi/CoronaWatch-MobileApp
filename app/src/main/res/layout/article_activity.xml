@@ -196,13 +196,12 @@ Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit ame
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="8dp"
                         android:paddingRight="5dp"
-                        android:background="@mipmap/bg"
+                        android:background="@color/colorPrimary"
                         android:fontFamily="@font/roboto_light"
-                        android:onClick="sendMessage"
-                        android:text="@string/envoyer"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/blanc"
                         android:textSize="22sp"
-                        tools:ignore="OnClick" />
+                        tools:ignore="OnClick"
+                        tools:text="إرسال"/>
 
                 <EditText
                         android:id="@+id/com"
