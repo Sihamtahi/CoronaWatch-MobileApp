@@ -55,12 +55,31 @@ lateinit var bottomSheetDialog :BottomSheetDialog
 class buttumnav : AppCompatActivity() ,OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     var switchMap: Button ?= null
+    /*********************************Variables utilisées dans la locatisation et la notification**/
+    lateinit var locationRequest : LocationRequest
+    lateinit var fusedLocationProviderClient : FusedLocationProviderClient
+    companion object {
+        var instancee: buttumnav? = null
+        fun getMainInstancee():buttumnav{return instancee!!}
+    }
+    fun updateTextView(value :String )
+    {        this@buttumnav.runOnUiThread{
+        // text_location2.text=value
+        // locationText.text=value
+    }
+    }
+    fun getPending():PendingIntent?{
+        return getPendingIntent()
+    }
 
+
+    /**********************Fin localisation **************************************************************/
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_buttumnav)
-
+        /**********Retourner le contexte d***/
+        instancee = this//
         /** la partie ajoutée concernant la map**/
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
@@ -75,11 +94,48 @@ class buttumnav : AppCompatActivity() ,OnMapReadyCallback {
         swip_up.setOnClickListener { bottomSheetDialog.show() }
 
         switchMap = findViewById(R.id.switchmap)
+        /****************launch the background location *************/
+        Dexter.withActivity(this)
+                .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                .withListener(object : PermissionListener {
+                    override fun onPermissionGranted(response: PermissionGrantedResponse?) {
+                        updateLocation()
+                    }
+                    override fun onPermissionRationaleShouldBeShown(permission: PermissionRequest?, token: PermissionToken?){}
+                    override fun onPermissionDenied(response: PermissionDeniedResponse?)
+                    {
+                        Toast.makeText(this@buttumnav,"You must accpet location permission",Toast.LENGTH_SHORT).show()
 
+                    }
+                })
+                .check()
 
 
     }
+    /****************paramétrge de a localisation et le update *************************************************/
+    private fun updateLocation() /**faire un update de la localisation c'est à dire récupérer lat et long ***/
+    {
+        buildLocationRequest()
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+            return
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+        fusedLocationProviderClient.requestLocationUpdates(locationRequest, getPendingIntent())
+    }
 
+    private fun getPendingIntent(): PendingIntent? {
+        val intent = Intent(this@buttumnav,MyService::class.java)
+        intent.setAction(MyService.ACTION_PROCESS_UPDATE)
+        return PendingIntent.getBroadcast(this@buttumnav,0,intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    }
+
+    private fun buildLocationRequest()/****Parametrer la localisation *****/
+    {
+        locationRequest=LocationRequest()
+        locationRequest.priority=LocationRequest.PRIORITY_HIGH_ACCURACY
+        locationRequest.interval=5000
+        locationRequest.fastestInterval=3000
+        locationRequest.smallestDisplacement=30f //faire un update pour chaque 150 m
+    }
     /**la partie ajoutée qui concerne la map @ovverride de la deuxème fonctions onMapReady**/
     /**SetMapStyle : cette une fonction qui applique le style aubergine qui se trouve dans le dossier row (stylemap.json)**/
     private val TAG = MapsActivity::class.java.simpleName

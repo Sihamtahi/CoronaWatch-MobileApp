@@ -72,4 +72,8 @@ dependencies {
 
     //Android Youtube Player
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
+
+    //Google location
+    implementation "com.google.android.gms:play-services-location:16.0.0"
+    implementation "com.karumi:dexter:5.0.0"
 }
