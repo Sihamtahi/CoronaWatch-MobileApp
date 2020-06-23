@@ -134,6 +134,7 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             (root as LinearLayout).dividerDrawable = drawable
         }
 
+
         var prefsLogginFb = PreferenceManager.getDefaultSharedPreferences(this)
          IsloginFb = prefsLogginFb.getBoolean("IsloginFb", false)
         var prefs = PreferenceManager.getDefaultSharedPreferences(this)
@@ -168,6 +169,14 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             return titleList[position]
         }
     }
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+         super.onPrepareOptionsMenu(menu)
+
+        var register = menu!!.findItem(R.id.nav_home)
+        register.setVisible(false)
+        return true
+    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         return super.onCreateOptionsMenu(menu)
         val infl = menuInflater
@@ -180,15 +189,6 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             spanString.setSpan(AbsoluteSizeSpan(55,true), 0, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             item.setTitle(spanString)
         }
-
-
-            var mRefreshLogin = menu.getItem(R.id.nav_login)
-            mRefreshLogin.setVisible(false)
-            menu.getItem(R.id.nav_logout).setVisible(true)
-
-
-
-       // menu.getItem(R.id.nav_logout).setVisible(false)
         return true
     }
 
@@ -227,8 +227,8 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                     build()
 
             var googleSignInClient=GoogleSignIn.getClient(this,gso)
-            googleSignInClient.signOut()
-                /*if(IsloginFb){
+
+                if(IsloginFb){
                     LoginManager.getInstance().logOut()
                     nameTxt!!.text = "الكنية و الاسم الأول"
                     emailTxt!!.text = "البريد الإلكتروني"
@@ -238,22 +238,18 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                     "أنت الآن غير متصل بهذا التطبيق",
                     Toast.LENGTH_LONG
                 ).show()
-                }*/
+                }else{
+                    if(Islogin){
 
-                // Sign Out google
+                        if(googleSignInClient != null){
+                            googleSignInClient.signOut()
+                            Toast.makeText(this@MainActivity, "أنت الآن غير متصل بهذا التطبيق", Toast.LENGTH_LONG).show()
+                        } else{
+                            println("user nest pas connecte ")
+                        }
 
-
-                if(Islogin){
-
-                    if(googleSignInClient != null){
-                        googleSignInClient.signOut()
-                        Toast.makeText(this@MainActivity, "أنت الآن غير متصل بهذا التطبيق", Toast.LENGTH_LONG).show()
-                    } else{
-                        println("user nest pas connecte ")
-                    }
-
-                } else println("nooo")
-
+                    } else println("nooo")
+                }
             }
 
         }
