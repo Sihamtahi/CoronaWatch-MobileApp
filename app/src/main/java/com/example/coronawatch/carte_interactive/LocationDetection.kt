@@ -66,12 +66,9 @@ class MyService : BroadcastReceiver() {
                      val location = result.lastLocation
                      var town: String =" "
                      val gcd = Geocoder(buttumnav.instancee)
-                     //Thread.sleep(1000);
                      var addresses: MutableList<android.location.Address>? = gcd.getFromLocation(location.latitude, location.longitude, 1)
 
                      //to notify here
-
-
                      if (addresses!!.get(0).locality != null)
                      {
                          town = addresses.get(0).locality
@@ -83,8 +80,7 @@ class MyService : BroadcastReceiver() {
 
                     }
                        Log.d("Sonthing","----> the new town is :"+currentTown)
-                         val intent = Intent(buttumnav.instancee ,NotifService::class.java)
-                         startForegroundService(buttumnav.instancee!!, intent)
+
                  }
              }
          }
