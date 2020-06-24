@@ -6,14 +6,16 @@
     <color name="colorAccent">#3497FD</color>
     <color name="colorGray">#808080</color>
     <color name="colorGrayFond">#D3D3D3</color>
+
+    <color name="blue">#2A2E43</color>
+    <color name="colorDrawerText">#454F63</color>
+    <color name="fbcolor">#4267B2</color>
     <color name="Gray">#cccccc</color>
+    <color name="White">#FDFDFD</color>
     <color name="title_color">#959DAD</color>
     <color name="Gray_back">#F7F7F7</color>
     <color name="GoogleTextColor">#444444</color>
     <color name="text_article">#78849E</color>
-    <color name="blue">#2A2E43</color>
-    <color name="colorDrawerText">#454F63</color>
-    <color name="fbcolor">#4267B2</color>
 
     <!-- Couleurs utilisées pour cartes intercatives-->
 

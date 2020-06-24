@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="facebook_app_id">503166670572438</string>
     <string name="fb_login_protocol_scheme">fb503166670572438</string>
     <string name="server_client_id">742338064904-u9kdjgv0k9475lq2ldmsh8g7uuqnmrur.apps.googleusercontent.com</string>
@@ -47,6 +47,12 @@
     <string name="todo">TODO</string>
     <string name="notice">قم بالتمرير لأعلى لعرض المزيد من المعلومات</string>
     <string name="عدد_حالات_الشفاء">عدد حالات الشفاء</string>
+    <string name="msg_loading" translatable="false">جاري التحميل...</string>
+    <string name="buffering_string" translatable="false">Buffering&#8230;</string>
+    <string name="toast_message" translatable="false">Playback completed.</string>
+    <string name="upphoto" translatable="false"><b>اضغط لتحميل صورة...</b></string>
+    <string name="err" tools:ignore="DuplicateDefinition"><b>خطأ</b></string>
+    <string name="wilaya" translatable="false">الرجاء اختيار الولاية</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
