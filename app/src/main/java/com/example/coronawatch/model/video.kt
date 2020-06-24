@@ -23,3 +23,32 @@ data class Video(
     @SerializedName("date")
     val date : String
 )
+
+data class videoFeed (
+    @SerializedName("attachment")
+    var attachment: Attachment,
+    @SerializedName("publication_date")
+    var publication_date: String,
+    @SerializedName("is_validated")
+    var is_validated: Boolean,
+    @SerializedName("is_deleted")
+    var is_deleted: Boolean,
+    @SerializedName("title")
+    var title: String,
+    @SerializedName("description")
+    var description: String,
+    @SerializedName("user")
+    var user:  Int
+)
+data class Attachment(
+    @SerializedName("extension")
+    var extension: String,
+    @SerializedName("file_url")
+    var file_url: String,
+    @SerializedName("nom")
+    var nom: String,
+    @SerializedName("file")
+    var file: String,
+    @SerializedName("date")
+    var date: String
+)

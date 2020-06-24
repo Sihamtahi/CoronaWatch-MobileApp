@@ -5,12 +5,12 @@
         android2:orientation="vertical"
         android2:layout_width="match_parent"
         android2:layout_height="match_parent"
-        android2:background="@drawable/login_page"
+        android2:background="@drawable/login_fond"
 >
     <LinearLayout
             android2:layout_width="match_parent"
             android2:layout_height="match_parent"
-            android2:background="#CCFFFFFF"
+
             android2:orientation="vertical">
         <LinearLayout
                 android2:layout_width="match_parent"
@@ -31,8 +31,8 @@
                     android2:layout_width="280dp"
                     android2:layout_height="55dp"
                     android2:layout_gravity="center"
-                    android2:textSize="18sp"
-                    android2:layout_marginTop="70dp"
+                    android2:textSize="20sp"
+                    android2:layout_marginTop="170dp"
                     android2:text="تسجيل الدخول عبر الفيسبوك"
                     android2:textColor="@color/blanc"
                     android2:background="@drawable/et_cust"/>
@@ -43,7 +43,7 @@
                     android2:layout_height="55dp"
                     android2:layout_gravity="center"
                     android2:text="تسجيل الدخول عبر جوجل"
-                    android2:textSize="18sp"
+                    android2:textSize="20sp"
                     android2:layout_marginTop="20dp"
                     android2:textColor="@color/blanc"
                     android2:background="@drawable/google_button_login"/>

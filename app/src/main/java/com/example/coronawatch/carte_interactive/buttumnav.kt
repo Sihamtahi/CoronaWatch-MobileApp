@@ -1,6 +1,9 @@
 package com.example.coronawatch
 
+import android.Manifest
+import android.app.PendingIntent
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.Color
 import android.location.Address
@@ -25,7 +28,18 @@ import com.google.gson.reflect.TypeToken
 import okhttp3.*
 import java.io.IOException
 import android.widget.TextView
+import androidx.core.app.ActivityCompat
 import com.example.article.R
+import com.example.map2.MyService
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationServices
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionDeniedResponse
+import com.karumi.dexter.listener.PermissionGrantedResponse
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.single.PermissionListener
 import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
@@ -68,7 +82,7 @@ class buttumnav : AppCompatActivity() ,OnMapReadyCallback {
         // locationText.text=value
     }
     }
-    fun getPending():PendingIntent?{
+    fun getPending(): PendingIntent?{
         return getPendingIntent()
     }
 

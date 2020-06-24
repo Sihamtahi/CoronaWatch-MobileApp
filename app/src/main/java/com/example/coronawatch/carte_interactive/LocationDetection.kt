@@ -12,16 +12,9 @@ import android.content.Context.LOCATION_SERVICE
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.location.Geocoder
-import android.location.Location
-import android.location.LocationListener
-import android.location.LocationManager
-import android.os.Bundle
-import android.view.View
-import android.widget.TextView
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startForegroundService
+import com.example.coronawatch.Town
+import com.example.coronawatch.buttumnav
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.maps.model.Circle
 import com.google.android.gms.maps.model.CircleOptions
@@ -76,7 +69,7 @@ class MyService : BroadcastReceiver() {
                    if (!currentTown.equals(town))
                     {
                             currentTown=town
-                            checkDangerZone(currentTown, DangerZone.instance!!)
+                            checkDangerZone(currentTown, buttumnav.instancee!!)
 
                     }
                        Log.d("Sonthing","----> the new town is :"+currentTown)
@@ -109,7 +102,7 @@ class MyService : BroadcastReceiver() {
 
                 Log.d("Sonthing ", "aqli deg on response n afficher cercle")
                         var str_response = "ll"
-                        str_response = response.body()!!.string()
+                        str_response = response.body!!.string()
                         //Log.d("Sonthing ", " La réponse est : " + str_response)
                         val gson = Gson()
                         val listTownType = object : TypeToken<List<Town>>() {}.type

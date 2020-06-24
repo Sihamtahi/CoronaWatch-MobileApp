@@ -15,6 +15,8 @@ import android.util.Base64
 import java.util.Arrays
 import android.content.pm.PackageManager
 import android.preference.PreferenceManager
+import android.view.Menu
+import android.view.View
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import java.security.MessageDigest
@@ -28,6 +30,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.google.android.material.internal.NavigationMenu
+import com.google.android.material.navigation.NavigationView
 
 class login : AppCompatActivity() {
 
@@ -69,6 +73,8 @@ class login : AppCompatActivity() {
                             var logged = true
                             var prefsLoggin = PreferenceManager.getDefaultSharedPreferences(this@login)
                             prefsLoggin.edit().putBoolean("IsloginFb", logged).commit()
+
+
                             var id = ""
                             var name = ""
                             var email = ""

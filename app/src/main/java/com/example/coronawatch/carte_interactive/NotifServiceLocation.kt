@@ -4,14 +4,20 @@ import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.os.Build
 import android.os.IBinder
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
+import com.example.article.R
+import com.example.coronawatch.buttumnav
+
 class NotifService : Service() {
     override fun onBind(intent: Intent?): IBinder?
     {
         TODO("not implemented")
     }
+    @RequiresApi(Build.VERSION_CODES.ECLAIR)
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int):Int {
         try {
             /**********************************notifier la personne dans ou il est dans une zone à risque*********************************************************/
@@ -19,7 +25,7 @@ class NotifService : Service() {
             val notification = NotificationCompat.Builder(applicationContext, CHANNEL_ID)
                 .setContentTitle("منطقة خطرة") // title for notification
                 .setContentText( "حذاري انت في بلدية فيها اشخاص مصابين,\n الوقاية خير من العلاج  ")// message for notification
-                .setSmallIcon(R.drawable.logo_app) //small icon for notification
+                .setSmallIcon(R.drawable.logo) //small icon for notification
                 .setAutoCancel(true)
                 .setContentIntent(buttumnav.instancee!!.getPending())
                 .build()

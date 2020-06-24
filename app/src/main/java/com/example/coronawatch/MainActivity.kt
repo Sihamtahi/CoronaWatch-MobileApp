@@ -17,6 +17,7 @@ import android.text.style.AbsoluteSizeSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
@@ -50,11 +51,11 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var genderTxt: TextView ?= null
     var photo: ImageView?= null
     lateinit var mGoogleApiClient: GoogleApiClient
-
-    var IsloginFb : Boolean = false
+    var  itemToHide: MenuItem ?= null
+     var IsloginFb : Boolean = false
     var Islogin : Boolean = false
     var menu: Menu ?= null
-
+    var  mMenuItem: MenuItem ?= null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -84,7 +85,7 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         toggle.syncState()
         nav_view_menu.setNavigationItemSelectedListener(this)
         nav_view_menu.itemIconTintList = null
-        nav_view_menu.setCheckedItem(R.id.nav_home)
+        nav_view_menu.setCheckedItem(R.id.nav_feed)
 
         var header  = nav_view_menu.getHeaderView(0)
 
@@ -146,6 +147,7 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
         adapter.addFragment(web(),title = titWeb)
         adapter.addFragment(youtube(),title = titYT)
+        adapter.addFragment(FragementvideoFeeds(),title = titYT)
 
         viewPager.adapter = adapter
         tabs.setupWithViewPager(viewPager)
@@ -170,17 +172,17 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         }
     }
 
-    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-         super.onPrepareOptionsMenu(menu)
-
-        var register = menu!!.findItem(R.id.nav_home)
-        register.setVisible(false)
+    /*override fun onPrepareOptionsMenu(menu: Menu) :Boolean {
+       // val item: MenuItem = menu.findItem(R.id.nav_logout)
+    //    item.isVisible = false
         return true
-    }
+    }*/
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         return super.onCreateOptionsMenu(menu)
         val infl = menuInflater
         infl.inflate(R.menu.main_menu, menu)
+
         for (i in 0 until menu!!.size()) {
             val item = menu!!.getItem(i)
             val spanString = SpannableString(menu.getItem(i).title.toString())
@@ -191,6 +193,7 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         }
         return true
     }
+
 
     override fun onBackPressed() {
         if (drawer_layout!!.isDrawerOpen(GravityCompat.START)) {
