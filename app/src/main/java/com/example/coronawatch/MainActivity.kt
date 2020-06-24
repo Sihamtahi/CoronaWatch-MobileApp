@@ -1,6 +1,8 @@
 package com.example.coronawatch
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +10,6 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.article.R
 import kotlinx.android.synthetic.main.activity_main.*
-import android.widget.LinearLayout
 import android.graphics.drawable.GradientDrawable
 import android.preference.PreferenceManager
 import android.text.Spannable
@@ -18,16 +19,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import com.example.coronawatch.Article.web
 import com.example.coronawatch.Login.*
 import com.example.coronawatch.model.CircleTransform
+import com.example.signaler.SignalerActivity
 import com.facebook.login.LoginManager
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -150,6 +152,40 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         tabs.setupWithViewPager(viewPager)
 
 
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ),0
+
+            )
+        }
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CAMERA
+            ) !== PackageManager.PERMISSION_GRANTED
+        ) {
+//            btn!!.isEnabled = false
+//            video!!.isEnabled = false
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ),
+                0
+            )
+        }
+
+
+
     }
     class MyviewPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager){
         private val fragmentList: MutableList<Fragment> =ArrayList()
@@ -216,6 +252,11 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             }
             R.id.nav_login -> {
                 val intent = Intent(this,login::class.java)
+                startActivity(intent)
+
+            }
+            R.id.nav_reports-> {
+                val intent = Intent(this, SignalerActivity::class.java)
                 startActivity(intent)
 
             }
