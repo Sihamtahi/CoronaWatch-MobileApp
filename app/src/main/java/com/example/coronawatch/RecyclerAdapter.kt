@@ -20,6 +20,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import java.text.SimpleDateFormat
+import java.util.*
 
 
 class RecyclerAdapter(val video : List<Video>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
@@ -82,11 +83,15 @@ class RecyclerAdapter(val video : List<Video>) : RecyclerView.Adapter<RecyclerAd
 
         val item = video.get(i)
 
-        val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
       //  val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm")
         //val output: String = formatter.format(parser.parse(item.date))
 
-        viewHolder.time.text = item.date
+
+        var local=  Locale( "ar" , "TN" )
+        val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'",local)
+        val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm",local)
+        val output: String = formatter.format(parser.parse(item.date))
+        viewHolder.time.text = output
         viewHolder.name.text = item.title
         /******************loader la video*********************/
         //lifecycle.addObserver(youTubePlayerView2)

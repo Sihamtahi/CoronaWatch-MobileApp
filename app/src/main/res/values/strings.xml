@@ -7,7 +7,9 @@
     </string>
     <string name="app_name">TestCorona</string>
     <string name="title_name">\nآخر الأخبار</string>
+    <string name="title_name_feeds" >آخر أخبار فيروس كورونا \n</string>
     <string name="fb">فايسبوك</string>
+    <string name="vide" translatable="false">فيديوهات</string>
     <string name="yout">اخر الاخبار</string>
     <string name="news">مقالات</string>
     <!-- TODO: Remove or change this placeholder text -->

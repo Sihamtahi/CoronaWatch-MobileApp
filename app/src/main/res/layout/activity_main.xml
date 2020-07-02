@@ -8,17 +8,35 @@
         android:orientation="vertical"
         tools:context="com.example.coronawatch.MainActivity">
 
-        <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabTextAppearance="@style/TextAppearance.AppCompat.Large"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            android:background="@color/blanc"
+            app:titleTextAppearance="@style/Toolbar.TitleText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:tabTextAppearance="@style/TextAppearance.AppCompat.Large"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
                 android:background="@color/blanc"
-                android:minHeight="?attr/actionBarSize"
-                android:theme="?attr/actionBarTheme"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                android:orientation="vertical">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_name_feeds"
+                    android:textSize="23sp"
+                    android:id="@+id/myTitle"
+                    android:textColor="@color/gray" />
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
 
         <LinearLayout
                 xmlns:app="http://schemas.android.com/apk/res-auto"

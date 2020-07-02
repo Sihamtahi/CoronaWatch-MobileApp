@@ -16,6 +16,8 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import java.text.SimpleDateFormat
 import android.content.Context
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class RecyclerAdapterVideoFeed(val video: ArrayList<videoFeed>) : RecyclerView.Adapter<RecyclerAdapterVideoFeed.ViewHolder>() {
@@ -78,9 +80,12 @@ class RecyclerAdapterVideoFeed(val video: ArrayList<videoFeed>) : RecyclerView.A
 
         val item = video.get(i)
 
-        val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
-        //  val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm")
-        //val output: String = formatter.format(parser.parse(item.date))
+
+
+        var local=  Locale( "ar" , "TN" )
+        val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'",local)
+        val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm",local)
+        //val output: String = formatter.format(parser.parse(item.publication_date))
 
         val mediaController = MediaController(viewHolder.pubVideo.context)
         viewHolder.time.text = item.publication_date

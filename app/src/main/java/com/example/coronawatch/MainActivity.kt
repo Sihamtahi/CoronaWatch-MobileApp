@@ -20,7 +20,9 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.*
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
@@ -54,15 +56,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-       /*  val actionbar = supportActionBar
-         getSupportActionBar()!!.setShowHideAnimationEnabled(false)
-        val titleActivit: String = getString(com.example.article.R.string.title_name)
-        actionbar!!.title = titleActivit
-        //set back button
-        actionbar.setDisplayHomeAsUpEnabled(true)
-        actionbar.setDisplayHomeAsUpEnabled(true)*/
+       /* val actionbar = supportActionBar
+          getSupportActionBar()!!.setShowHideAnimationEnabled(false)
+          val titleActivit: String = getString(com.example.article.R.string.title_name)
+          actionbar!!.title = titleActivit
+        */
 
+       // toolbar.setTitle( getString(R.string.title_name_feeds) )
         //placing toolbar in place of actionbar
+
+
+        var toolbar = findViewById<Toolbar>(R.id.toolbar)
+        toolbar.setElevation(0.0F)
         setSupportActionBar(toolbar)
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
         getSupportActionBar()!!.setDisplayShowHomeEnabled(true)
@@ -103,6 +108,7 @@ class MainActivity : AppCompatActivity() {
 
         val titWeb: String = getString(R.string.news)
         val titYT: String = getString(R.string.yout)
+        var titVideo : String = getString(R.string.vide)
         val adapter = MyviewPagerAdapter(supportFragmentManager)
 
         // split tab Layout
@@ -128,7 +134,7 @@ class MainActivity : AppCompatActivity() {
 
         adapter.addFragment(web(),title = titWeb)
         adapter.addFragment(youtube(),title = titYT)
-        adapter.addFragment(FragementvideoFeeds(),title = titYT)
+        adapter.addFragment(FragementvideoFeeds(),title = titVideo)
 
         viewPager.adapter = adapter
         tabs.setupWithViewPager(viewPager)

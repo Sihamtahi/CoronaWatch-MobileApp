@@ -80,7 +80,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_marginStart="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:background="@drawable/login_fond"
                         android:layout_marginEnd="8dp"/>
                 <LinearLayout
                         android:layout_width="wrap_content"
@@ -118,9 +117,10 @@
                             android:text="17"
                             android:layout_marginLeft="30dp"
                             android:textSize="16sp" />
-                    <RelativeLayout android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginLeft="10dp">
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp">
                         <Button
                                 android:id="@+id/like"
                                 android:layout_width="27dp"

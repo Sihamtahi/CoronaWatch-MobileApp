@@ -4,6 +4,7 @@
     <string name="server_client_id">742338064904-u9kdjgv0k9475lq2ldmsh8g7uuqnmrur.apps.googleusercontent.com</string>
     <string name="app_name">CoronaWatch</string>
     <string name="title_name">آخر الأخبار</string>
+    <string name="title_name_feeds" ><b> آخر أخبار فيروس كورونا n\</b></string>
     <string name="fb">فايسبوك</string>
     <string name="yout">يوتيوب</string>
     <string name="news">أخبار</string>

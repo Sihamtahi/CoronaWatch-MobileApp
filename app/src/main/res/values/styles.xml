@@ -18,7 +18,6 @@
     <style name="MyActionBarTheme" parent="Base.Widget.AppCompat.Light.ActionBar.Solid">
         <item name="elevation">1dp</item>
         <item name="height">80dp</item>
-
     </style>
     <style name="MyTheme.MyActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
         <item name="elevation">1dp</item>
@@ -35,5 +34,8 @@
         <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
         <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
         <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
+    </style>
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">20sp</item>
     </style>
 </resources>

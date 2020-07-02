@@ -28,6 +28,8 @@ import com.example.coronawatch.Login.*
 import com.example.coronawatch.Signaler.EnvoyerVideo
 import com.example.coronawatch.model.CircleTransform
 import com.example.signaler.SignalerActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -40,6 +42,7 @@ import kotlinx.android.synthetic.main.activity_maps.nav_view_menu
 import org.jetbrains.anko.doAsync
 import okhttp3.*
 import org.json.JSONObject
+import retrofit2.Response
 import java.io.IOException
 import java.util.*
 
@@ -66,6 +69,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback , NavigationView.On
     var photo: ImageView?= null
     private var PRIVATE_MODE = 0
     private var PREF_NAME ="coronawatch"
+    private var sharedPrefIdUser: SharedPreferences?= null
+    private var Islogin: Boolean ?= null
 
     private lateinit var mMap: GoogleMap
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -113,25 +118,28 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback , NavigationView.On
 
         /** Update user info in header of Menu **/
         var header = nav_view_menu.getHeaderView(0)
-        nameTxt = header.findViewById(R.id.name)
+        nameTxt = header.findViewById(R.id.nom)
         emailTxt = header.findViewById(R.id.mail)
         photo = header.findViewById(R.id.photoProfile)
 
         /// Vérification de l'authentification avec Google
-        val sharedPrefIdUser: SharedPreferences = getSharedPreferences(PREF_NAME, PRIVATE_MODE)
-        var Islogin = sharedPrefIdUser!!.getBoolean("login_google",false)
-        /*if(Islogin){
+         sharedPrefIdUser = getSharedPreferences(PREF_NAME, PRIVATE_MODE)
+         Islogin = sharedPrefIdUser!!.getBoolean("login_google",false)
+
+        if(Islogin==true){
 
         var lastName = sharedPrefIdUser!!.getString("user_name","user")
             println("le nom est "+lastName)
+            getUserInfo(lastName!!)
+
         var firstName = sharedPrefIdUser!!.getString("user_name_last","user")
-        nameTxt!!.text = firstName
+        nameTxt!!.text = lastName+ " "+firstName
         emailTxt!!.text = sharedPrefIdUser!!.getString("user_email","")
         Picasso.get().load(sharedPrefIdUser!!.getString("user_profilePic","")).transform( CircleTransform()).into(photo)
-        }*/
+        }
 
 
-         if(Islogin){
+         if(Islogin==true){
            hideLogInItem()
            showLogoutItem()
        }else{
@@ -492,6 +500,37 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback , NavigationView.On
 
             }
             R.id.nav_logout -> {
+                var  gso : GoogleSignInOptions = GoogleSignInOptions.
+                    Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).
+                    build()
+                var googleSignInClient= GoogleSignIn.getClient(this,gso)
+
+                if(Islogin==true){
+
+                    // show the login button
+                    showLoginItem()
+                    // hide log out button
+                    hideLogoutItem()
+
+                    if(googleSignInClient != null){
+
+                        googleSignInClient.signOut()
+                        //remove user info from shared preferences
+                        val editor:SharedPreferences.Editor =  sharedPrefIdUser!!.edit()
+                        editor.remove("login_google")
+                        editor.remove("user_name")
+                        editor.remove("user_email")
+                        editor.remove("user_name_last")
+                        editor.remove("user_profilePic")
+                        editor.commit()
+                        editor.apply()
+
+                        Toast.makeText(this@MapsActivity, "أنت الآن غير متصل بهذا التطبيق", Toast.LENGTH_LONG).show()
+                    } else{
+                        println("user nest pas connecte ")
+                    }
+
+                } else println("nooo")
 
             }
 
@@ -514,5 +553,31 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback , NavigationView.On
     fun hideLogoutItem(){
         val itemlogout: MenuItem = nav_view_menu.menu.findItem(R.id.nav_logout)
         itemlogout.isVisible = false
+    }
+
+    fun getUserInfo(username:String){
+
+        val request = ServiceBuilder.buildService(APIServiceSign::class.java)
+            var   user:user ?= null
+            val call = request.getUserInfo("token ee5f6766123e0fa438f03380f300a8f74f081c9f",username)
+
+        call!!.enqueue(object : retrofit2.Callback<user?> {
+            override fun onFailure(call: retrofit2.Call<user?>, t: Throwable) {
+                println("je suis dans on failure "+t.message)
+                Toast.makeText(this@MapsActivity,"تم رفض هذه العملية ، يرجى التحقق من اتصالك بالإنترنت",Toast.LENGTH_LONG).show()
+            }
+
+            override fun onResponse(call: retrofit2.Call<user?>, response: Response<user?>) {
+                if (response.isSuccessful()) {
+                   user = response.body()!!
+                    println("le user est :" + user)
+                    println("ouii enregistré dans la bdd")
+                }else{
+                    println("je suis dans not success" +response.body())
+                    Toast.makeText(this@MapsActivity,"تم رفض هذه العملية ، يرجى التحقق من اتصالك بالإنترنت",Toast.LENGTH_LONG).show()
+                }
+            }
+        })
+
     }
 }
