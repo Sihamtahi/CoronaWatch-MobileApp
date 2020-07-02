@@ -10,6 +10,7 @@ import android.widget.*
 import com.example.article.R
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.articles.model.ArticleItem
 import com.example.coronawatch.model.videoFeed
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -50,9 +51,6 @@ class FragementvideoFeeds : Fragment() {
         val API_LINK_VIDEOS ="http://corona-watch-api.herokuapp.com/corona-watch-api/v1/feeds/videos/v2/"
         val API_HEADER_KEY= getString(R.string.auth)
         val API_HEADRER_VALUE=getString(R.string.token)
-
-
-        val t:Thread = Thread.currentThread()
 
         val request = Request.Builder()
             .url(API_LINK_VIDEOS)
@@ -97,10 +95,11 @@ class FragementvideoFeeds : Fragment() {
                         val gson = Gson()
                         val listVideos = object : TypeToken<List<videoFeed>>() {}.type
                         videos = gson.fromJson(str_response, listVideos)
+                        var filterList: List<videoFeed> = videos.filter { s -> s.is_validated == true }
 
                         getActivity()?.runOnUiThread {
                             progress_bar?.visibility = View.GONE
-                            adapter = RecyclerAdapterVideoFeed(videos)
+                            adapter = RecyclerAdapterVideoFeed(filterList)
                             recycler_view.adapter = adapter
                         }
                     }

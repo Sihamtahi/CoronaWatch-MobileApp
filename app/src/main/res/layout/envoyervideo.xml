@@ -117,7 +117,7 @@
                     android:background="@drawable/rounded_corner2"
                     android:backgroundTint="#03A9F4"
                     android:textSize="24sp"
-                    android:text="الإبلاغ عن حالة "
+                    android:text="@string/envoyer_vid"
                     android:textColor="@color/White" />
         </LinearLayout>
     </ScrollView>

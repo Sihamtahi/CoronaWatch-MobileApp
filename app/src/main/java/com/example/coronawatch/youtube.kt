@@ -52,8 +52,6 @@ class youtube : Fragment() {
         val API_HEADER_KEY= getString(R.string.auth)
         val API_HEADRER_VALUE=getString(R.string.token)
 
-        val t:Thread = Thread.currentThread()
-
         val request = Request.Builder()
             .url(API_LINK_VIDEOS)
             .header(API_HEADER_KEY, API_HEADRER_VALUE)

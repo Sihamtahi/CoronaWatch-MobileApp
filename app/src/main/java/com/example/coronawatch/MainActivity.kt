@@ -114,12 +114,12 @@ class MainActivity : AppCompatActivity() {
         // split tab Layout
         val root = tabs.getChildAt(0)
         if (root is LinearLayout) {
-            (root as LinearLayout).showDividers = LinearLayout.SHOW_DIVIDER_MIDDLE
+            (root ).showDividers = LinearLayout.SHOW_DIVIDER_MIDDLE
             val drawable = GradientDrawable()
             drawable.setColor(resources.getColor(R.color.material_grey_600))
             drawable.setSize(2, 1)
-            (root as LinearLayout).dividerPadding = 10
-            (root as LinearLayout).dividerDrawable = drawable
+            (root ).dividerPadding = 10
+            (root ).dividerDrawable = drawable
         }
 
  // Get shared pref of login with google & fb

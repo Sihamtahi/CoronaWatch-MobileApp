@@ -322,6 +322,7 @@ class SignalerCasVideo: AppCompatActivity(),View.OnClickListener {
         call!!.enqueue(object : Callback<ServerResponse?> {
             override fun onFailure(call: Call<ServerResponse?>, t: Throwable) {
                 Log.e("hhh", "Unable to submit post to API." + t.message)//To change body of created functions use File | Settings | File Templates.
+                Toast.makeText(this@SignalerCasVideo,"تم رفض هذه العملية ، يرجى التحقق من اتصالك بالإنترنت",Toast.LENGTH_LONG).show()
             }
 
             override fun onResponse(call: Call<ServerResponse?>, response: Response<ServerResponse?>) {
@@ -329,9 +330,9 @@ class SignalerCasVideo: AppCompatActivity(),View.OnClickListener {
                     println(response.body()!!.toString())
                     var file =response.body()!!.resource_type+"/"+response.body()!!.type+"/v"+
                             response.body()!!.version+"/"+response.body()!!.public_id +"." +response.body()!!.format
-                    println("file_url est : " + file)
                     PostVideoToHeroku(file,size)
                     Log.i( "hhh","post submitted to API." + response.body()!!.toString())
+                    Toast.makeText(this@SignalerCasVideo,"لقد تم الإبلاغ عن هذه الحالة، سوف يصلك تنبيه عندما يتم تأكيد الإبلاغ",Toast.LENGTH_LONG).show()
                 }
             }
         })

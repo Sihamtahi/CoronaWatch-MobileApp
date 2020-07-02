@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:tabTextAppearance="@style/TextAppearance.AppCompat.Large"
-            android:background="@color/blanc"
+            android:background="@color/Gray_back"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             android:textAlignment="center"

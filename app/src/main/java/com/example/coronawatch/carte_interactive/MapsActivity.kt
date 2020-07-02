@@ -44,6 +44,7 @@ import okhttp3.*
 import org.json.JSONObject
 import retrofit2.Response
 import java.io.IOException
+import java.text.DecimalFormat
 import java.util.*
 
 
@@ -130,7 +131,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback , NavigationView.On
 
         var lastName = sharedPrefIdUser!!.getString("user_name","user")
             println("le nom est "+lastName)
-            getUserInfo(lastName!!)
+
 
         var firstName = sharedPrefIdUser!!.getString("user_name_last","user")
         nameTxt!!.text = lastName+ " "+firstName
@@ -403,7 +404,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback , NavigationView.On
         myListCoord= a.runCircles()
         MyLatestData = a.runLatestData()
         if(myListCoord == null){
+            progressBar.visibility = View.GONE
             Toast.makeText(this@MapsActivity,"تم رفض هذه العملية ، لم يتم تحميل البيانات ، يرجى التحقق من اتصالك بالإنترنت",Toast.LENGTH_LONG).show()
+
         }else {
             runOnUiThread {
                 progressBar.visibility = View.GONE
@@ -435,8 +438,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback , NavigationView.On
                     Toast.makeText(this@MapsActivity,"تم رفض هذه العملية ، لم يتم تحميل البيانات ، يرجى التحقق من اتصالك بالإنترنت",Toast.LENGTH_LONG).show()
                 }else {
                     progressBar.visibility = View.GONE
-                    malade!!.text = MyLatestData!!.getValue("latest").confirmed
-                    retablis!!.text = MyLatestData!!.getValue("latest").deaths
+                    var formatter = DecimalFormat("#,###")
+                   var formattedNumber = formatter.format(MyLatestData!!.getValue("latest").confirmed.toDouble())
+                   var formattedNumberdeath = formatter.format(MyLatestData!!.getValue("latest").deaths.toDouble())
+
+                    malade!!.text = formattedNumber
+                    retablis!!.text = formattedNumberdeath
 
                 }
             }
@@ -555,29 +562,4 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback , NavigationView.On
         itemlogout.isVisible = false
     }
 
-    fun getUserInfo(username:String){
-
-        val request = ServiceBuilder.buildService(APIServiceSign::class.java)
-            var   user:user ?= null
-            val call = request.getUserInfo("token ee5f6766123e0fa438f03380f300a8f74f081c9f",username)
-
-        call!!.enqueue(object : retrofit2.Callback<user?> {
-            override fun onFailure(call: retrofit2.Call<user?>, t: Throwable) {
-                println("je suis dans on failure "+t.message)
-                Toast.makeText(this@MapsActivity,"تم رفض هذه العملية ، يرجى التحقق من اتصالك بالإنترنت",Toast.LENGTH_LONG).show()
-            }
-
-            override fun onResponse(call: retrofit2.Call<user?>, response: Response<user?>) {
-                if (response.isSuccessful()) {
-                   user = response.body()!!
-                    println("le user est :" + user)
-                    println("ouii enregistré dans la bdd")
-                }else{
-                    println("je suis dans not success" +response.body())
-                    Toast.makeText(this@MapsActivity,"تم رفض هذه العملية ، يرجى التحقق من اتصالك بالإنترنت",Toast.LENGTH_LONG).show()
-                }
-            }
-        })
-
-    }
 }

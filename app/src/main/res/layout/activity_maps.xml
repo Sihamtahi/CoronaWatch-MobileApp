@@ -195,7 +195,7 @@
                         android:text="@string/عددالإصابات"
                         android:textColor="@color/gary_maq"
                         android:textSize="20sp"
-                        android:layout_marginLeft="85dp"
+                        android:layout_marginLeft="80dp"
                         android:id="@+id/porteur_map"
 
                         android:textAlignment="center"/>
@@ -208,18 +208,18 @@
                     android:paddingBottom="7dp"
             >
                 <TextView
-                        android:layout_width="136dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="37dp"
-                        android:text="@string/_12"
+                        android:text=""
                         android:textColor="@color/red_maq"
                         android:textSize="28sp"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="25dp"
                         android:id="@+id/suspect"
                         android:textAlignment="center"/>
                 <TextView
-                        android:layout_width="120dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="37dp"
-                        android:text="@string/_58"
+                        android:text=""
                         android:textColor="@color/pink_maq"
                         android:textSize="28sp"
                         android:id="@+id/malade"

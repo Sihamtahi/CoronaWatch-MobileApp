@@ -47,7 +47,7 @@
                   android:label="أخبار فيروس كورونا"> </activity>
         <activity android:name="com.example.coronawatch.buttumnav"/>
 
-        <activity android:name="com.example.coronawatch.MapsActivity"
+        <activity android:name="com.example.coronawatch.splashScreen"
                   android:theme="@style/AppTheme.NoShadow">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -62,6 +62,7 @@
         <activity android:name="com.example.signaler.SignalerActivity" />
         <activity android:name="com.example.coronawatch.Signaler.EnvoyerVideo" />
         <activity android:name="com.example.coronawatch.Signaler.SignalerCasVideo" />
+        <activity android:name="com.example.coronawatch.MapsActivity" />
         <service android:name="com.example.map2.NotifService" />
         <receiver android:name="com.example.map2.MyService" />
 

@@ -20,7 +20,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class RecyclerAdapterVideoFeed(val video: ArrayList<videoFeed>) : RecyclerView.Adapter<RecyclerAdapterVideoFeed.ViewHolder>() {
+class RecyclerAdapterVideoFeed(val video: List<videoFeed>) : RecyclerView.Adapter<RecyclerAdapterVideoFeed.ViewHolder>() {
     private val context: Context? = null
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -87,6 +87,7 @@ class RecyclerAdapterVideoFeed(val video: ArrayList<videoFeed>) : RecyclerView.A
         val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm",local)
         //val output: String = formatter.format(parser.parse(item.publication_date))
 
+        if(item.is_validated){
         val mediaController = MediaController(viewHolder.pubVideo.context)
         viewHolder.time.text = item.publication_date
         viewHolder.name.text = item.title
@@ -95,20 +96,7 @@ class RecyclerAdapterVideoFeed(val video: ArrayList<videoFeed>) : RecyclerView.A
         viewHolder.pubVideo.setMediaController(mediaController)
         viewHolder.pubVideo.requestFocus()
         viewHolder.pubVideo.start()
-
-        /******************loader la video*********************/
-        //lifecycle.addObserver(youTubePlayerView2)
-
-       /*viewHolder.pubVideo.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
-            override fun onReady(youTubePlayer: YouTubePlayer)
-            {
-
-                youTubePlayer.cueVideo(item.attachment.file_url, 0f)
-
-            }
-        })*/
-        //  viewHolder.likeImage.setBackgroundResource(R.mipmap.path)
-        //viewHolder.likeRedImage.setBackgroundResource(R.mipmap.lik)
+        }
 
     }
 

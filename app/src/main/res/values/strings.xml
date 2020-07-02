@@ -61,6 +61,7 @@
     <string name="signaler_cas" translatable="false">الإبلاغ عن حالة كورونا</string>
     <string name="descript" translatable="false">إضافة وصف</string>
     <string name="titre" translatable="false">إضافة عنوان</string>
+    <string name="envoyer_vid" translatable="false"> إرسال الفيديو</string>
     <string name="auth" >Authorization</string>
     <string name="token" >token ee5f6766123e0fa438f03380f300a8f74f081c9f</string>
 
