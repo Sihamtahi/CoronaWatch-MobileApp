@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android2="http://schemas.android.com/apk/res/android"
+        xmlns:app2="http://schemas.android.com/apk/res-auto"
+        android2:orientation="vertical"
+        android2:layout_width="match_parent"
+        android2:layout_height="match_parent"
+        android2:background="@drawable/login_fond"
+>
+    <LinearLayout
+            android2:layout_width="match_parent"
+            android2:layout_height="match_parent"
+
+            android2:orientation="vertical">
+        <LinearLayout
+                android2:layout_width="match_parent"
+                android2:layout_height="match_parent"
+                android2:orientation="vertical"
+                android2:layout_marginTop="100dp">
+            <ImageView
+                    android2:layout_width="166dp"
+                    android2:layout_height="191dp"
+                    android2:layout_gravity="center"
+                    android2:layout_marginTop="10dp"
+                    app2:srcCompat="@drawable/logo"
+                    android2:id="@+id/logo"/>
+
+            <Button
+                    android2:id="@+id/ivite"
+                    android2:layout_width="280dp"
+                    android2:layout_height="55dp"
+                    android2:layout_gravity="center"
+                    android2:textSize="20sp"
+                    android2:layout_marginTop="10dp"
+                    android2:text="تسجيل الدخول عبر الفيسبوك"
+                    android2:textColor="@color/blanc"
+                    android2:background="@color/colorPrimary"/>
+            <Button
+                    android2:id="@+id/loginfacebook"
+                    android2:layout_width="280dp"
+                    android2:layout_height="55dp"
+                    android2:layout_gravity="center"
+                    android2:textSize="20sp"
+                    android2:layout_marginTop="170dp"
+                    android2:text="تسجيل الدخول عبر الفيسبوك"
+                    android2:textColor="@color/blanc"
+                    android2:background="@drawable/et_cust"/>
+
+            <Button
+                    android2:id="@+id/logingoogle"
+                    android2:layout_width="280dp"
+                    android2:layout_height="55dp"
+                    android2:layout_gravity="center"
+                    android2:text="تسجيل الدخول عبر جوجل"
+                    android2:textSize="20sp"
+                    android2:layout_marginTop="20dp"
+                    android2:textColor="@color/blanc"
+                    android2:background="@drawable/google_button_login"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+
+

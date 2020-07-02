@@ -11,11 +11,9 @@ import android.widget.*
 import com.example.article.R
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.coronawatch.Article.ArticleRecyclerAdapter
 import com.example.coronawatch.model.Video
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import kotlinx.android.synthetic.main.activity_buttumnav.*
 import kotlinx.android.synthetic.main.fb.*
 import okhttp3.Call
 import okhttp3.Callback
@@ -51,8 +49,8 @@ class youtube : Fragment() {
     fun GetVideos () {
         var videos = ArrayList<Video>()
         val API_LINK_VIDEOS ="http://corona-watch-api.herokuapp.com/corona-watch-api/v1/scrapers/youtube/?validated=true"
-        val API_HEADER_KEY="Authorization"
-        val API_HEADRER_VALUE="Basic YWRtaW46YWRtaW4="
+        val API_HEADER_KEY= getString(R.string.auth)
+        val API_HEADRER_VALUE=getString(R.string.token)
 
         val t:Thread = Thread.currentThread()
 

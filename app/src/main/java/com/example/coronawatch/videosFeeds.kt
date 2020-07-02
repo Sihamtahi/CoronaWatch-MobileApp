@@ -48,8 +48,9 @@ class FragementvideoFeeds : Fragment() {
     fun GetVideos () {
         var videos = ArrayList<videoFeed>()
         val API_LINK_VIDEOS ="http://corona-watch-api.herokuapp.com/corona-watch-api/v1/feeds/videos/v2/"
-        val API_HEADER_KEY="Authorization"
-        val API_HEADRER_VALUE="Basic YWRtaW46YWRtaW4="
+        val API_HEADER_KEY= getString(R.string.auth)
+        val API_HEADRER_VALUE=getString(R.string.token)
+
 
         val t:Thread = Thread.currentThread()
 

@@ -15,6 +15,9 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
     buildTypes {
         release {
             minifyEnabled true
@@ -69,6 +72,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:2.8.1"
     implementation "com.squareup.retrofit2:converter-gson:2.8.1"
     implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
 
     //Android Youtube Player
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'

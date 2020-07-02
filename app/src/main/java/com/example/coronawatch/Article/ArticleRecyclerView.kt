@@ -3,6 +3,7 @@ package com.example.coronawatch.Article
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,8 +18,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class ArticleRecyclerAdapter (val article : List<ArticleItem>): RecyclerView.Adapter<ArticleRecyclerAdapter.ViewHolder>() {
 
+class ArticleRecyclerAdapter (val article : List<ArticleItem>): RecyclerView.Adapter<ArticleRecyclerAdapter.ViewHolder>() {
     companion object{
         val TITLE="title"
         val TEXT="texte"
@@ -84,7 +85,7 @@ class ArticleRecyclerAdapter (val article : List<ArticleItem>): RecyclerView.Ada
                     when (which) {
                         DialogInterface.BUTTON_POSITIVE -> cardview.visibility = View.INVISIBLE
                         // User clicked the Yes button
-                        //tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 35)
+
                         DialogInterface.BUTTON_NEGATIVE -> cardview.visibility = View.VISIBLE
                     }// User clicked the No button
                 }
@@ -112,10 +113,12 @@ class ArticleRecyclerAdapter (val article : List<ArticleItem>): RecyclerView.Ada
         val item = article.get(position)
         holder.nb_comm.text = "1"
         holder.nb_like.text = "2"
+
         var local=  Locale( "ar" , "TN" )
         val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'",local)
         val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm",local)
         val output: String = formatter.format(parser.parse(item.publicationDate))
+
 
 
         holder.time.text =output
@@ -123,8 +126,6 @@ class ArticleRecyclerAdapter (val article : List<ArticleItem>): RecyclerView.Ada
         holder.shareImage.setBackgroundResource(com.example.article.R.mipmap.share)
         holder.shareImage.setClipToOutline(true)
         val ImageView = holder.pubImage
-
-
 
         //Picasso.with(holder.itemView.context).load(item.attachment.file_url).resize(185*2,278*2).into(ImageView)
 
@@ -139,7 +140,7 @@ class ArticleRecyclerAdapter (val article : List<ArticleItem>): RecyclerView.Ada
             intent.putExtra(IMAGE,item.attachment.file_url)
             holder.itemView.context.startActivity(intent)
              }
-       // val screenshot = ViewShot(holder.itemView)
+
         holder.shareImage.setOnClickListener{
             val intent = Intent()
             intent.action = Intent.ACTION_SEND

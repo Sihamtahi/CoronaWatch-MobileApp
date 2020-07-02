@@ -55,7 +55,8 @@ val client = OkHttpClient.Builder()
 //information sur l'api API
 val API_LINK_TOWNS ="https://corona-watch-api.herokuapp.com/corona-watch-api/v1/geolocation/towns/"
 val API_HEADER_KEY="Authorization"
-val API_HEADRER_VALUE="Basic YWRtaW46YWRtaW4="
+val API_HEADRER_VALUE="token ee5f6766123e0fa438f03380f300a8f74f081c9f"
+
 //liste des towns and
 var listTownsInfo:List<Town> = ArrayList<Town>() // une liste pour savegarder la liste des Towns qui contiennent des informations
 var listCircles:List<Circle> = ArrayList<Circle>() //une liste pour sauvegader les cercles pour pouvoir changer leur couleurs

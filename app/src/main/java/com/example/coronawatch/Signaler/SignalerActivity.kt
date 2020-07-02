@@ -6,11 +6,11 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
@@ -18,12 +18,12 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.FileProvider
-import com.afollestad.materialdialogs.BuildConfig
-import com.afollestad.materialdialogs.MaterialDialog
+import androidx.appcompat.widget.Toolbar
 import com.bumptech.glide.Glide
 import com.example.article.R
 import com.example.coronawatch.Signaler.APIService
+import com.example.coronawatch.Signaler.EnvoyerVideo
+import com.example.coronawatch.Signaler.SignalerCasVideo
 import com.example.coronawatch.Signaler.reponsecloud
 import kotlinx.android.synthetic.main.signaler.*
 import okhttp3.MediaType
@@ -38,11 +38,8 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
-import java.io.IOException
-import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
-import java.util.logging.Logger
 
 
 class SignalerActivity: AppCompatActivity(), View.OnClickListener {
@@ -59,11 +56,28 @@ class SignalerActivity: AppCompatActivity(), View.OnClickListener {
     private var mImageFileLocation = ""
     private lateinit var pDialog: ProgressDialog
     private var postPath: String? = null
-
+    private var PRIVATE_MODE = 0
+    private var PREF_NAME ="coronawatch"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.signaler)
 
+        //getting the toolbar
+        var toolbar = findViewById<Toolbar>(R.id.toolbar)
+        var video = findViewById<Button>(R.id.uploadvideo)
+        //setting the title
+        toolbar.setTitle(getString(R.string.signaler_cas))
+
+        video.setOnClickListener{
+            var intent = Intent(this, SignalerCasVideo::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+        }
+
+        //placing toolbar in place of actionbar
+        setSupportActionBar(toolbar)
+        getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
+        getSupportActionBar()!!.setDisplayShowHomeEnabled(true)
 
         upload.setOnClickListener(this)
         pickImage.setOnClickListener(this)
@@ -76,12 +90,12 @@ class SignalerActivity: AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View) {
         when (v.id) {
             R.id.pickImage ->
-                        {
-                            val galleryIntent = Intent(
-                                Intent.ACTION_PICK,
-                                MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                            startActivityForResult(galleryIntent, REQUEST_PICK_PHOTO)
-                        }
+            {
+                val galleryIntent = Intent(
+                    Intent.ACTION_PICK,
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                startActivityForResult(galleryIntent, REQUEST_PICK_PHOTO)
+            }
 
 
             R.id.upload -> {
@@ -112,6 +126,11 @@ class SignalerActivity: AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
     @SuppressLint("WrongConstant")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -136,8 +155,6 @@ class SignalerActivity: AppCompatActivity(), View.OnClickListener {
 
                     postPath = mediaPath
                 }
-
-
             } else if (requestCode == CAMERA_PIC_REQUEST) {
                 if (Build.VERSION.SDK_INT > 21) {
 
@@ -147,9 +164,7 @@ class SignalerActivity: AppCompatActivity(), View.OnClickListener {
                 } else {
                     Glide.with(this).load(fileUri).into(preview)
                     postPath = fileUri!!.path
-
                 }
-
             }
 
         } else if (resultCode != Activity.RESULT_CANCELED) {
@@ -158,7 +173,6 @@ class SignalerActivity: AppCompatActivity(), View.OnClickListener {
     }
 
     protected fun initDialog() {
-
         pDialog = ProgressDialog(this)
         pDialog.setMessage(getString(R.string.msg_loading))
         pDialog.setCancelable(true)
@@ -166,12 +180,10 @@ class SignalerActivity: AppCompatActivity(), View.OnClickListener {
 
 
     protected fun showpDialog() {
-
         if (!pDialog.isShowing) pDialog.show()
     }
 
     protected fun hidepDialog() {
-
         if (pDialog.isShowing) pDialog.dismiss()
     }
 
@@ -213,13 +225,14 @@ class SignalerActivity: AppCompatActivity(), View.OnClickListener {
             PostDataToApi(upload_preset,vFile)
         }
     }
+
     fun PostDataToApi(a: RequestBody, b: MultipartBody.Part){
 
         showpDialog()
         var user : ArrayList<Int> = ArrayList()
-        user.add(1)
-
-
+        val sharedPrefIdUser: SharedPreferences = getSharedPreferences(PREF_NAME, PRIVATE_MODE)
+        val iduser = sharedPrefIdUser!!.getInt("id_user",0)
+        user.add(iduser)
 
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -267,24 +280,22 @@ class SignalerActivity: AppCompatActivity(), View.OnClickListener {
                         .build()
 
                     var attach = Attachment("image","corona.png","image",response.body()!!.url,"2020-06-19T13:16:59.155162Z")
-                    var cas_suspect =  suspected (attach,"2020-06-19T13:16:59.155162Z",false,size,user)
+                    var cas_suspect =  suspected(attach,"2020-06-19T13:16:59.155162Z",false,size,user)
 
                     val service = retrofit.create(APIService::class.java)
                     val call = service.uploadImageToApi(cas_suspect)
-
-
-
                     call!!.enqueue(object : Callback<suspected?> {
                         override fun onFailure(call: Call<suspected?>, t: Throwable) {
                             Log.e("", "Unable to submit post to API." + t.message)
+                            Toast.makeText(this@SignalerActivity,"تم رفض هذه العملية ، يرجى التحقق من اتصالك بالإنترنت",Toast.LENGTH_LONG).show()
 
                         }
-
                         override fun onResponse(call: Call<suspected?>, response: Response<suspected?>) {
                             if (response.isSuccessful()) {
                                 hidepDialog()
                                 println(response.body()!!.toString())
                                 Log.i( "","post submitted to API." +postPath + response.body()!!.toString())
+                                Toast.makeText(this@SignalerActivity,"لقد تم الإبلاغ عن هذه الحالة، سوف يصلك تنبيه عندما يتم تأكيد الإبلاغ",Toast.LENGTH_LONG).show()
                             }
                         }
                     })
@@ -296,11 +307,9 @@ class SignalerActivity: AppCompatActivity(), View.OnClickListener {
     }
 
     companion object {
+        //image
         private val REQUEST_TAKE_PHOTO = 0
         private val REQUEST_PICK_PHOTO = 2
         private val CAMERA_PIC_REQUEST = 1111
-
-           }
-
-
+    }
 }

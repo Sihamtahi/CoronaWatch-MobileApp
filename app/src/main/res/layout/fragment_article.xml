@@ -48,7 +48,7 @@
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
                             android:textColor="@color/colorGray"
-                            android:textSize="15sp"
+                            android:textSize="18sp"
                             android:layout_marginLeft="20dp"
                             android:text="datte an time"/>
                     <Button
@@ -62,7 +62,7 @@
                         android:text="tiiiitre"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="30dp"
                         android:focusable="true"
                         android:layout_gravity="center"
                         android:textSize="20sp"
@@ -81,7 +81,7 @@
                 <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         android:layout_marginBottom="30dp">
                     <Button
                             android:id="@+id/share"

@@ -24,9 +24,11 @@
         <item
             android:id="@+id/nav_reports"
             android:icon="@drawable/icreport"
-            android:title="ابلاغ" />
-
-
+            android:title="@string/signaler_cas" />
+        <item
+                android:id="@+id/nav_videoFeeds"
+                android:icon="@drawable/ic_video_pink"
+                android:title="@string/upvideoFeeds" />
     </group>
 
     <item android:title="">
@@ -45,6 +47,5 @@
             </group>
         </menu>
     </item>
-
 
 </menu>

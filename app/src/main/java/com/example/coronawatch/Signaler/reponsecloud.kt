@@ -41,3 +41,30 @@ data class reponsecloud(
     @SerializedName("width")
     val width: Int
 )
+
+class ServerResponse {
+
+    // variable name should be same as in the json response from php
+    @SerializedName("success")
+    var success: Boolean = false
+        internal set
+    @SerializedName("message")
+    var message: String? = null
+        internal set
+    @SerializedName("resource_type")
+    var resource_type: String? = null
+        internal set
+    @SerializedName("type")
+    var type: String? = null
+        internal set
+    @SerializedName("version")
+    var version: String? = null
+        internal set
+    @SerializedName("public_id")
+    var public_id: String? = null
+        internal set
+    @SerializedName("format")
+    var format: String? = null
+        internal set
+
+}

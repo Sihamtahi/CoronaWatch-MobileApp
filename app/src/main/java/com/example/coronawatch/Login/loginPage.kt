@@ -2,6 +2,7 @@ package com.example.coronawatch
 
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.content.pm.PackageInfo
@@ -22,6 +23,12 @@ import com.facebook.login.LoginResult
 import java.security.MessageDigest
 import android.widget.*
 import com.example.article.R
+import com.example.coronawatch.Login.APIServiceSign
+import com.example.coronawatch.Login.AuthUser
+import com.example.coronawatch.Login.user
+import com.example.coronawatch.Signaler.APIService
+import com.example.signaler.Attachment
+import com.example.signaler.videoFeed
 import com.google.android.gms.auth.api.Auth
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -32,6 +39,14 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.android.material.internal.NavigationMenu
 import com.google.android.material.navigation.NavigationView
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 class login : AppCompatActivity() {
 
@@ -42,15 +57,16 @@ class login : AppCompatActivity() {
     private var googlelogin: Button? = null
     lateinit var mGoogleSignInClient: GoogleSignInClient
     private val RC_SIGN_IN = 9001
-
-
+    private var PRIVATE_MODE = 0
+    private var PREF_NAME ="coronawatch"
+    var sharedPrefIdUser: SharedPreferences  ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.loginpage)
 
       callbackManager = CallbackManager.Factory.create()
-        facebooklogin = findViewById(R.id.loginfacebook) as Button
+        facebooklogin = findViewById(R.id.loginfacebook)
         //Google
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken("YOUR_WEB_APPLICATION_CLIENT_ID")
@@ -67,6 +83,7 @@ class login : AppCompatActivity() {
                 object : FacebookCallback<LoginResult> {
                     override fun onSuccess(loginResult: LoginResult) {
                         val accessToken = AccessToken.getCurrentAccessToken()
+                        println("token facebook est : "+accessToken)
                         val request = GraphRequest.newMeRequest(accessToken) { `object`, response ->
                             println("===================JSON Object" + `object`)
                             //Intializing each parameters avaible in graph API
@@ -96,7 +113,7 @@ class login : AppCompatActivity() {
                                 if (`object`.has("picture")) {
                                     url = `object`.getJSONObject("picture").getJSONObject("data").getString("url")
                                 }
-                                val intent = Intent(this@login, MainActivity::class.java)
+                                val intent = Intent(this@login, MapsActivity::class.java)
                                 println("logged in facebook")
 
                                 var bundle = Bundle()
@@ -173,10 +190,14 @@ class login : AppCompatActivity() {
                 ApiException::class.java
             )
             val isSigned : Boolean = true
-           var prefs = PreferenceManager.getDefaultSharedPreferences(this)
-           prefs.edit().putBoolean("Islogin", isSigned).commit() // islogin is a boolean value of my login status
 
             // Signed in successfully
+            // save LoginwithGoogle in internal storage
+            sharedPrefIdUser = getSharedPreferences(PREF_NAME, PRIVATE_MODE)
+
+            val editor:SharedPreferences.Editor =  sharedPrefIdUser!!.edit()
+            editor.putBoolean("login_google",isSigned)
+
             val googleId = account?.id ?: ""
             Log.i("Google ID",googleId)
 
@@ -195,7 +216,23 @@ class login : AppCompatActivity() {
             val googleIdToken = account?.idToken ?: ""
             Log.i("Google ID Token", googleIdToken)
 
-            val myIntent = Intent(this, MainActivity::class.java)
+            // store user infos in shared preferences
+            editor.putString("user_name",googleFirstName)
+            editor.putString("user_name_last",googleLastName)
+            editor.putString("user_email",googleEmail)
+            editor.putString("user_profilePic",googleProfilePicURL)
+
+            // save shared preferences
+            editor.apply()
+            editor.commit()
+            // Create a user
+            var tokenv = googleIdToken.take(128)
+            var userv = user(googleFirstName,googleEmail,tokenv,"final user",googleProfilePicURL)
+
+           SignUp(userv)
+
+
+            val myIntent = Intent(this, MapsActivity::class.java)
 
 
             myIntent.putExtra("google_id", googleId)
@@ -231,5 +268,119 @@ class login : AppCompatActivity() {
         }
     }
 
+    fun SignUp(userv: user){
+        val loggingInterceptor = HttpLoggingInterceptor()
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+
+        val okHttpClient = OkHttpClient().newBuilder()
+            .retryOnConnectionFailure(true)
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
+            .writeTimeout(60, TimeUnit.SECONDS)
+
+        okHttpClient.addInterceptor(loggingInterceptor).build()
+        okHttpClient.retryOnConnectionFailure(true)
+
+        okHttpClient.addInterceptor { chain ->
+            val request = chain.request().newBuilder()
+                .header("Accept", "application/json")
+                .addHeader("Connection", "close")
+                .build()
+            chain.proceed(request)
+        }
+
+
+        val BaseUrl = "http://corona-watch-api.herokuapp.com/"
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BaseUrl)
+            .client(okHttpClient.build())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val service = retrofit.create(APIServiceSign::class.java)
+        // val getResponse = AppConfig.retrofit.create<APIService>(APIService::class.java!!)
+        //   val call = getResponse.
+        val call = service.SignUp(userv)
+
+
+        call!!.enqueue(object : Callback<user?> {
+            override fun onFailure(call: Call<user?>, t: Throwable) {
+                Toast.makeText(this@login,"تم رفض هذه العملية ، يرجى التحقق من اتصالك بالإنترنت",Toast.LENGTH_LONG).show()
+            }
+
+            override fun onResponse(call: Call<user?>, response: Response<user?>) {
+                if (response.isSuccessful()) {
+                    println(response.body()!!.toString())
+                    println("ouii enregistré dans la bdd")
+                }else{
+                    println("user existe deja")
+                    var userauth = AuthUser(10,userv.username,userv.password)
+                    SignIn(userauth)
+                }
+            }
+        })
+    }
+
+    fun SignIn(userv: AuthUser){
+        val loggingInterceptor = HttpLoggingInterceptor()
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+
+        val okHttpClient = OkHttpClient().newBuilder()
+            .retryOnConnectionFailure(true)
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
+            .writeTimeout(60, TimeUnit.SECONDS)
+
+        okHttpClient.addInterceptor(loggingInterceptor).build()
+        okHttpClient.retryOnConnectionFailure(true)
+
+        okHttpClient.addInterceptor { chain ->
+            val request = chain.request().newBuilder()
+                .header("Accept", "application/json")
+                .addHeader("Connection", "close")
+                .build()
+            chain.proceed(request)
+        }
+
+
+        val BaseUrl = "http://corona-watch-api.herokuapp.com/"
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BaseUrl)
+            .client(okHttpClient.build())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val service = retrofit.create(APIServiceSign::class.java)
+        // val getResponse = AppConfig.retrofit.create<APIService>(APIService::class.java!!)
+        //   val call = getResponse.
+        val call = service.SignIn(userv)
+
+
+        call!!.enqueue(object : Callback<AuthUser?> {
+            override fun onFailure(call: Call<AuthUser?>, t: Throwable) {
+                Log.e("hhh", "Unable to submit video feeds to API." + t.message)
+                Toast.makeText(this@login,"تم رفض هذه العملية ، يرجى التحقق من اتصالك بالإنترنت",Toast.LENGTH_LONG).show()
+            }
+
+            override fun onResponse(call: Call<AuthUser?>, response: Response<AuthUser?>) {
+                if (response.isSuccessful()) {
+                    println(response.body()!!.toString())
+
+                    println("sign in reussi l'id de cet utilisateur est " +response!!.body()!!.user_id)
+
+
+                    val id:Int = Integer.parseInt(response!!.body()!!.user_id.toString())
+                    val editor:SharedPreferences.Editor =  sharedPrefIdUser!!.edit()
+                    editor.putInt("id_user",id)
+                    editor.apply()
+                    editor.commit()
+
+                }else{
+                    Toast.makeText(this@login,"تم رفض هذه العملية ، يرجى التحقق من اتصالك بالإنترنت",Toast.LENGTH_LONG).show()
+                    println("prblm sign in")
+                }
+            }
+        })
+    }
 
 }

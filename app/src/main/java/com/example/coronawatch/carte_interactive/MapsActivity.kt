@@ -1,6 +1,7 @@
 package com.example.coronawatch
 
 import android.content.Intent
+import android.content.SharedPreferences
 import com.google.android.gms.maps.model.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import android.content.res.Resources.NotFoundException
@@ -15,6 +16,7 @@ import android.text.style.AbsoluteSizeSpan
 import android.util.Log
 import android.view.*
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -23,11 +25,15 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.article.R
 import com.example.coronawatch.Login.*
+import com.example.coronawatch.Signaler.EnvoyerVideo
+import com.example.coronawatch.model.CircleTransform
+import com.example.signaler.SignalerActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.material.navigation.NavigationView
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_maps.*
 import kotlinx.android.synthetic.main.activity_maps.nav_view_menu
@@ -42,7 +48,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback , NavigationView.On
 
 
     var malade: TextView? = null
-    var confirme: TextView? = null
     var retablis: TextView? = null
 
     var btnMalade : Button ?= null
@@ -55,7 +60,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback , NavigationView.On
     var myListCoord: List<Locations_> ?= null
     var MyLatestData: Map<String, latest> ?= null
     var listcercle = ArrayList<Circle>()
-    var latestDataCountry : List<Locations_> ?= null
+
+    var nameTxt: TextView ?= null
+    var emailTxt: TextView ?= null
+    var photo: ImageView?= null
+    private var PRIVATE_MODE = 0
+    private var PREF_NAME ="coronawatch"
 
     private lateinit var mMap: GoogleMap
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,7 +74,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback , NavigationView.On
         setContentView(R.layout.activity_maps)
 
         malade = this.findViewById(R.id.malade)
-        confirme = findViewById(R.id.confirmé)
         retablis = findViewById(R.id.suspect)
         switchMap = findViewById(R.id.affGen)
         Btnmenu = findViewById(R.id.menu_maps)
@@ -100,6 +109,50 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback , NavigationView.On
         btnMalade = bottomSheetDialog.findViewById(R.id.malade_map_bottom)
         btnConfirme = bottomSheetDialog.findViewById(R.id.suspet_map_bottom)
         btnRetablis = bottomSheetDialog.findViewById(R.id.porteur_map_bottom)
+
+
+        /** Update user info in header of Menu **/
+        var header = nav_view_menu.getHeaderView(0)
+        nameTxt = header.findViewById(R.id.name)
+        emailTxt = header.findViewById(R.id.mail)
+        photo = header.findViewById(R.id.photoProfile)
+
+        /// Vérification de l'authentification avec Google
+        val sharedPrefIdUser: SharedPreferences = getSharedPreferences(PREF_NAME, PRIVATE_MODE)
+        var Islogin = sharedPrefIdUser!!.getBoolean("login_google",false)
+        /*if(Islogin){
+
+        var lastName = sharedPrefIdUser!!.getString("user_name","user")
+            println("le nom est "+lastName)
+        var firstName = sharedPrefIdUser!!.getString("user_name_last","user")
+        nameTxt!!.text = firstName
+        emailTxt!!.text = sharedPrefIdUser!!.getString("user_email","")
+        Picasso.get().load(sharedPrefIdUser!!.getString("user_profilePic","")).transform( CircleTransform()).into(photo)
+        }*/
+
+
+         if(Islogin){
+           hideLogInItem()
+           showLogoutItem()
+       }else{
+           showLoginItem()
+           hideLogoutItem()
+       }
+
+        /// Vérification de l'authentification avec Facebook
+        var islogged = intent.getBooleanExtra("logged",false)
+        if (islogged){
+
+            val name = intent.getStringExtra("name")
+            val email = intent.getStringExtra("email")
+            val ProfilePicURL = intent.getStringExtra("url")
+
+            Picasso.get().load(ProfilePicURL).transform( CircleTransform()).into(photo)
+
+            nameTxt!!.text = name
+            emailTxt!!.text = email
+
+        }
 
     }
 
@@ -376,7 +429,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback , NavigationView.On
                     progressBar.visibility = View.GONE
                     malade!!.text = MyLatestData!!.getValue("latest").confirmed
                     retablis!!.text = MyLatestData!!.getValue("latest").deaths
-                    confirme!!.text = MyLatestData!!.getValue("latest").recovered
+
                 }
             }
         }
@@ -423,8 +476,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback , NavigationView.On
                 startActivity(intent)
 
             }
+            R.id.nav_reports-> {
+                val intent = Intent(this, SignalerActivity::class.java)
+                startActivity(intent)
+
+            }
             R.id.nav_feed -> {
                 val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+
+            }
+            R.id.nav_videoFeeds-> {
+                val intent = Intent(this, EnvoyerVideo::class.java)
                 startActivity(intent)
 
             }
@@ -435,5 +498,21 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback , NavigationView.On
         }
         drawer_layout_maps.closeDrawer(GravityCompat.START)
         return true
+    }
+    fun showLoginItem(){
+        val item: MenuItem = nav_view_menu.menu.findItem(R.id.nav_login)
+        item.isVisible = true
+    }
+    fun hideLogInItem(){
+        val item: MenuItem = nav_view_menu.menu.findItem(R.id.nav_login)
+        item.isVisible = false
+    }
+    fun showLogoutItem(){
+        val itemlogout: MenuItem = nav_view_menu.menu.findItem(R.id.nav_logout)
+        itemlogout.isVisible = true
+    }
+    fun hideLogoutItem(){
+        val itemlogout: MenuItem = nav_view_menu.menu.findItem(R.id.nav_logout)
+        itemlogout.isVisible = false
     }
 }
