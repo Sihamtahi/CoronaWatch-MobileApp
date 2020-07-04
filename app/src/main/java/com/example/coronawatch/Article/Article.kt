@@ -33,6 +33,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 import java.util.concurrent.TimeUnit
+import com.example.coronawatch.model.RoundedTransformation
 
 
 class Article : AppCompatActivity() {
@@ -67,12 +68,18 @@ class Article : AppCompatActivity() {
         val articleItem:String = intent.getStringExtra(TITLE)
         text_pub.text=articleItem
         text.setMovementMethod(ScrollingMovementMethod())
-        supportActionBar?.title= articleItem
+        supportActionBar?.title= ""
 
         sendBtn = findViewById<Button>(R.id.send)
        // Picasso.with(applicationContext).load(intent.getStringExtra(IMAGE)).resize(600*2,278*2).into(pub_img)
 
         Picasso.get().load(intent.getStringExtra(IMAGE)).resize(600*2,278*2).into(pub_img)
+        Picasso.get().load(intent.getStringExtra(IMAGE)).transform(
+            RoundedTransformation(
+                45.toFloat(),
+                10
+            )
+        ).resize(600*2,278*2).into(pub_img)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             text.setText(Html.fromHtml(intent.getStringExtra(TEXT), Html.FROM_HTML_MODE_COMPACT))

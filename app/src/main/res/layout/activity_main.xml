@@ -12,19 +12,15 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabTextAppearance="@style/TextAppearance.AppCompat.Large"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            android:background="@color/blanc"
-            app:titleTextAppearance="@style/Toolbar.TitleText"
+            android:background="@drawable/back_toolbar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
                 android:background="@color/blanc"
                 android:orientation="vertical">
             <TextView
@@ -33,7 +29,8 @@
                     android:text="@string/title_name_feeds"
                     android:textSize="23sp"
                     android:id="@+id/myTitle"
-                    android:textColor="@color/gray" />
+                    android:textColor="@color/gray"
+                    android:textStyle="bold"/>
         </LinearLayout>
 
     </androidx.appcompat.widget.Toolbar>

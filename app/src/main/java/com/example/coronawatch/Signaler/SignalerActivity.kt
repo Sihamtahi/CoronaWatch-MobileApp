@@ -107,7 +107,7 @@ class SignalerActivity: AppCompatActivity(), View.OnClickListener {
                 if(size==0){
                     val builder = AlertDialog.Builder(upload.context)
                     // Set a title for alert dialog
-                    builder.setTitle(R.string.err)
+                    builder.setTitle(R.string.error)
                     // Ask the final question
                     builder.setMessage(R.string.wilaya)
 
@@ -267,7 +267,7 @@ class SignalerActivity: AppCompatActivity(), View.OnClickListener {
 
         callcc!!.enqueue(object : Callback<reponsecloud?> {
             override fun onFailure(call: Call<reponsecloud?>, t: Throwable) {
-                Log.e("hhh", "Unable to submit post to API." + t.message)//To change body of created functions use File | Settings | File Templates.
+                Toast.makeText(this@SignalerActivity,"تم رفض هذه العملية ، يرجى التحقق من اتصالك بالإنترنت",Toast.LENGTH_LONG).show()
             }
 
             override fun onResponse(call: Call<reponsecloud?>, response: Response<reponsecloud?>) {
@@ -287,23 +287,24 @@ class SignalerActivity: AppCompatActivity(), View.OnClickListener {
                     call!!.enqueue(object : Callback<suspected?> {
                         override fun onFailure(call: Call<suspected?>, t: Throwable) {
                             Log.e("", "Unable to submit post to API." + t.message)
+                            hidepDialog()
                             Toast.makeText(this@SignalerActivity,"تم رفض هذه العملية ، يرجى التحقق من اتصالك بالإنترنت",Toast.LENGTH_LONG).show()
 
                         }
                         override fun onResponse(call: Call<suspected?>, response: Response<suspected?>) {
                             if (response.isSuccessful()) {
-                                hidepDialog()
-                                println(response.body()!!.toString())
                                 Log.i( "","post submitted to API." +postPath + response.body()!!.toString())
+                                hidepDialog()
                                 Toast.makeText(this@SignalerActivity,"لقد تم الإبلاغ عن هذه الحالة، سوف يصلك تنبيه عندما يتم تأكيد الإبلاغ",Toast.LENGTH_LONG).show()
+                                hide()
                             }
                         }
                     })
                 }
             }
         })
-        hidepDialog()
-        hide()
+        //hidepDialog()
+
     }
 
     companion object {

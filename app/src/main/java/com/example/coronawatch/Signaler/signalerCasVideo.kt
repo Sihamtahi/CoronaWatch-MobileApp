@@ -387,20 +387,21 @@ class SignalerCasVideo: AppCompatActivity(),View.OnClickListener {
         call!!.enqueue(object : Callback<suspected?> {
             override fun onFailure(call: Call<suspected?>, t: Throwable) {
                 Log.e("hhh", "Unable to submit video cas to API." + t.message)
+                hidepDialog()
                 Toast.makeText(this@SignalerCasVideo,"تم رفض هذه العملية ، يرجى التحقق من اتصالك بالإنترنت",Toast.LENGTH_LONG).show()
             }
 
             override fun onResponse(call: Call<suspected?>, response: Response<suspected?>) {
                 if (response.isSuccessful()) {
-                    hidepDialog()
                     println(response.body()!!.toString())
                     Log.i( "hhh","post submitted video cas to API." + response.body()!!.toString())
+                    hidepDialog()
                     Toast.makeText(this@SignalerCasVideo,"لقد تم الإبلاغ عن هذه الحالة، سوف يصلك تنبيه عندما يتم تأكيد الإبلاغ",Toast.LENGTH_LONG)
+                    hide()
                 }
             }
         })
-        hidepDialog()
-        hide()
+
     }
 
     companion object {

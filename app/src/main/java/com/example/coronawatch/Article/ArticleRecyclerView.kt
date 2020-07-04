@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.articles.model.ArticleItem
+import com.example.coronawatch.model.RoundedTransformation
 import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.util.*
@@ -127,9 +128,7 @@ class ArticleRecyclerAdapter (val article : List<ArticleItem>): RecyclerView.Ada
         holder.shareImage.setClipToOutline(true)
         val ImageView = holder.pubImage
 
-        //Picasso.with(holder.itemView.context).load(item.attachment.file_url).resize(185*2,278*2).into(ImageView)
-
-        Picasso.get().load(item.attachment.file_url).resize(600*2,278*2).into(ImageView)
+        Picasso.get().load(item.attachment.file_url).transform( RoundedTransformation(45.toFloat(),10)).resize(600*2,278*2).into(ImageView)
 
 
         holder.itemView.setOnClickListener {

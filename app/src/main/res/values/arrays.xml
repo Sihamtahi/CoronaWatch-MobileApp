@@ -5,54 +5,54 @@
 
     <string-array name="wilaya_entries">
         <item >اختر الولاية</item>
-        <item >Adrar</item>
-        <item >Chlef</item>
-        <item >Laghouat</item>
-        <item >Oum El Bouaghi</item>
-        <item >Batna</item>
-        <item >Bejaia</item>
-        <item >Biskra</item>
-        <item >Bechar</item>
-        <item >Blida</item>
-        <item >Bouira</item>
-        <item >Tamanrasset</item>
-        <item >Tebessa</item>
-        <item >Tlemcen</item>
-        <item >Tiaret</item>
-        <item >Tizi Ouzou</item>
-        <item >Alger</item>
-        <item >Djelfa</item>
-        <item >Jijel</item>
-        <item >Setif</item>
-        <item >Saida</item>
-        <item >Skikda</item>
-        <item >Sidi Bel Abbes</item>
-        <item >Annaba</item>
-        <item >Guelma</item>
-        <item >Constantine</item>
-        <item >Medea</item>
-        <item >Mostaganem</item>
-        <item >MSila</item>
-        <item >Mascara</item>
-        <item >Ouargla</item>
-        <item >Oran</item>
-        <item >El Bayadh</item>
-        <item >Illizi</item>
-        <item >Bordj Bou Arreridj</item>
-        <item >Boumerdes</item>
-        <item >El Tarf</item>
-        <item >Tindouf</item>
-        <item >Tissemsilt</item>
-        <item >El Oued</item>
-        <item >Khenchela</item>
-        <item >Souk Ahras</item>
-        <item >Tipaza</item>
-        <item >Mila</item>
-        <item >Ain Defla</item>
-        <item >Naama</item>
-        <item >Ain Temouchent</item>
-        <item >Ghardaia</item>
-        <item >Relizane</item>
+        <item > أدرار</item>
+        <item >الشلف</item>
+        <item > الأغواط</item>
+        <item >أم البواقي</item>
+        <item >باتنة</item>
+        <item > بجاية</item>
+        <item >بسكرة</item>
+        <item > بشار</item>
+        <item > البليدة</item>
+        <item >البويرة</item>
+        <item > تمنراست</item>
+        <item > تبسة</item>
+        <item > تلمسان</item>
+        <item >تيارت</item>
+        <item >تيزي وزو</item>
+        <item >الجزائر</item>
+        <item > الجلفة</item>
+        <item > جيجل</item>
+        <item >سطيف</item>
+        <item > سعيدة</item>
+        <item >سكيكدة</item>
+        <item > سيدي بلعباس</item>
+        <item >عنابة</item>
+        <item > قالمة</item>
+        <item > قسنطينة</item>
+        <item > المدية</item>
+        <item >مستغانم</item>
+        <item > المسيلة</item>
+        <item >معسكر</item>
+        <item >ورقلة</item>
+        <item > وهران</item>
+        <item >البيض</item>
+        <item >إليزي</item>
+        <item > برج بوعريريج</item>
+        <item >بومرداس</item>
+        <item >الطارف</item>
+        <item >تندوف</item>
+        <item >تيسمسيلت</item>
+        <item >الوادي</item>
+        <item >خنشلة</item>
+        <item >سوق أهراس</item>
+        <item >تيبازة</item>
+        <item >ميلة</item>
+        <item >عين الدفلى</item>
+        <item >النعامة</item>
+        <item >عين تموشنت</item>
+        <item >غرداية</item>
+        <item >غليزان</item>
 
 
     </string-array>

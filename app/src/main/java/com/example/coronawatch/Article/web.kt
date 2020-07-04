@@ -53,11 +53,10 @@ class web : Fragment() {
                 val homeFeed: Article = gson.fromJson(body, Article::class.java)
                 var filterList: List<ArticleItem> = homeFeed.filter { s -> s.isValidated == true }
 
-
-
                 getActivity()?.runOnUiThread {
                     progress_bar?.visibility = View.GONE
-                    recycler_view.adapter = ArticleRecyclerAdapter(filterList)
+                    if(!filterList.isEmpty()){
+                    recycler_view.adapter = ArticleRecyclerAdapter(filterList)}
                 }
             }
             override fun onFailure(call: Call, e: IOException) {

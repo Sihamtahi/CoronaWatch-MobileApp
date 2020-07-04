@@ -19,14 +19,11 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import com.example.article.R
-import com.example.coronawatch.Login.*
 import com.example.coronawatch.Signaler.EnvoyerVideo
-import com.example.coronawatch.model.CircleTransform
+import com.example.coronawatch.model.RoundedTransformation
 import com.example.signaler.SignalerActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -36,13 +33,11 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.material.navigation.NavigationView
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_maps.*
 import kotlinx.android.synthetic.main.activity_maps.nav_view_menu
 import org.jetbrains.anko.doAsync
 import okhttp3.*
 import org.json.JSONObject
-import retrofit2.Response
 import java.io.IOException
 import java.text.DecimalFormat
 import java.util.*
@@ -136,7 +131,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback , NavigationView.On
         var firstName = sharedPrefIdUser!!.getString("user_name_last","user")
         nameTxt!!.text = lastName+ " "+firstName
         emailTxt!!.text = sharedPrefIdUser!!.getString("user_email","")
-        Picasso.get().load(sharedPrefIdUser!!.getString("user_profilePic","")).transform( CircleTransform()).into(photo)
+        Picasso.get().load(sharedPrefIdUser!!.getString("user_profilePic","")).transform( RoundedTransformation(35.toFloat(),0)).into(photo)
         }
 
 
@@ -156,7 +151,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback , NavigationView.On
             val email = intent.getStringExtra("email")
             val ProfilePicURL = intent.getStringExtra("url")
 
-            Picasso.get().load(ProfilePicURL).transform( CircleTransform()).into(photo)
+           // Picasso.get().load(ProfilePicURL).transform( CircleTransform()).into(photo)
+            Picasso.get().load(ProfilePicURL).transform( RoundedTransformation(45.toFloat(),10)).into(photo)
 
             nameTxt!!.text = name
             emailTxt!!.text = email
@@ -486,32 +482,40 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback , NavigationView.On
 
             }
             R.id.nav_login -> {
-
                 val intent = Intent(this, login::class.java)
                 startActivity(intent)
 
             }
             R.id.nav_reports-> {
-                val intent = Intent(this, SignalerActivity::class.java)
-                startActivity(intent)
-
+                if(Islogin==true) {
+                    val intent = Intent(this, SignalerActivity::class.java)
+                    startActivity(intent)
+                }else{
+                    Toast.makeText(this@MapsActivity,"الرجاء تسجيل الدخول أو التسجيل",Toast.LENGTH_LONG).show()
+                }
             }
             R.id.nav_feed -> {
+
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
 
             }
             R.id.nav_videoFeeds-> {
+                if(Islogin==true){
                 val intent = Intent(this, EnvoyerVideo::class.java)
                 startActivity(intent)
-
+                }else{
+                    Toast.makeText(this@MapsActivity,"الرجاء تسجيل الدخول أو التسجيل",Toast.LENGTH_LONG).show()
+                }
             }
+            /*R.id.nav_infos ->{
+                Toast.makeText(this@MapsActivity,"هذه الميزة غير متاحة في الوقت الحالي",Toast.LENGTH_LONG).show()
+            }*/
             R.id.nav_logout -> {
                 var  gso : GoogleSignInOptions = GoogleSignInOptions.
                     Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).
                     build()
                 var googleSignInClient= GoogleSignIn.getClient(this,gso)
-
                 if(Islogin==true){
 
                     // show the login button
@@ -533,6 +537,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback , NavigationView.On
                         editor.apply()
 
                         Toast.makeText(this@MapsActivity, "أنت الآن غير متصل بهذا التطبيق", Toast.LENGTH_LONG).show()
+
+                        // refresh the activity
+                        val intent = Intent(this, MapsActivity::class.java)
+                        startActivity(intent)
                     } else{
                         println("user nest pas connecte ")
                     }

@@ -17,11 +17,6 @@
             android:icon="@mipmap/iccon"/>
 
         <item
-            android:id="@+id/nav_infos"
-            android:title="تشخيص الصحة"
-            android:icon="@mipmap/profile"/>
-
-        <item
             android:id="@+id/nav_reports"
             android:icon="@drawable/icreport"
             android:title="@string/signaler_cas" />

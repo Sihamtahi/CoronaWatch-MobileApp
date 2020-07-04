@@ -314,7 +314,6 @@ class EnvoyerVideo: AppCompatActivity(),View.OnClickListener {
                         if(message.isEmpty() ){
                             editTextDesc!!.setError("من فضلك أدخل تعليقك")
 
-                            //textview.requestFocus()
                         }else{
                             if(title.isEmpty()){
                                 editTextTitre!!.setError("من فضلك أدخل تعليقك")
@@ -327,8 +326,7 @@ class EnvoyerVideo: AppCompatActivity(),View.OnClickListener {
                 }
             }
         })
-        hidepDialog()
-        hide()
+
     }
     fun uploadVideoFeeds(pathVideo:String,title:String,descption:String){
 
@@ -338,9 +336,6 @@ class EnvoyerVideo: AppCompatActivity(),View.OnClickListener {
 
         var attach = Attachment("video","corona.png","video",pathVideo,"2020-06-19T13:16:59.155162Z")
         var video_cas = videoFeed(attach,"2020-06-19T13:20:20.155162Z",false,false,title,descption,iduser)
-
-        // var attach = Attachment("video","video","image",pathVideo,"2020-06-19T13:16:59.155162Z")
-        //var cas_suspect =  suspected (attach,"2020-06-19T13:16:59.155162Z",false,17,user)
 
 
         val loggingInterceptor = HttpLoggingInterceptor()
@@ -372,21 +367,25 @@ class EnvoyerVideo: AppCompatActivity(),View.OnClickListener {
             .build()
 
         val service = retrofit.create(APIService::class.java)
-        // val getResponse = AppConfig.retrofit.create<APIService>(APIService::class.java!!)
-        //   val call = getResponse.
         val call = service.uploadVideoToApi(video_cas)
 
 
         call!!.enqueue(object : Callback<videoFeed?> {
             override fun onFailure(call: Call<videoFeed?>, t: Throwable) {
                 Log.e("hhh", "Unable to submit video feeds to API." + t.message)
+                hidepDialog()
                 Toast.makeText(this@EnvoyerVideo,"تم رفض هذه العملية ، يرجى التحقق من اتصالك بالإنترنت",Toast.LENGTH_LONG).show()
+
             }
 
             override fun onResponse(call: Call<videoFeed?>, response: Response<videoFeed?>) {
                 if (response.isSuccessful()) {
-                    println(response.body()!!.toString())
-                    Toast.makeText(this@EnvoyerVideo,"لقد تم الإبلاغ عن هذه الحالة، سوف يصلك تنبيه عندما يتم تأكيد الإبلاغ",Toast.LENGTH_LONG).show()
+                    println("le body est : "+ response.body()!!.toString())
+                    hidepDialog()
+                    Toast.makeText(this@EnvoyerVideo,"لقد تم تنزيل هذا الفيديو بنجاح ، سوف سيتم نشره بعد تأكيده",Toast.LENGTH_LONG).show()
+                    hide()
+                }else{
+                    println("not success prblm is"+response.body().toString())
                 }
             }
         })
